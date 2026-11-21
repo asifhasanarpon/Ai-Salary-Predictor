@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,29 +14,33 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['"Inter"', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'monospace']
-                    },
-                    colors: {
-                        slate: {
-                            850: '#172033',
-                            900: '#0F172A',
-                            950: '#0A0F1D'
-                        },
-                        corp: {
-                            50: '#EFF6FF',
-                            100: '#DBEAFE',
-                            500: '#3B82F6',
-                            600: '#2563EB',
-                            700: '#1D4ED8'
-                        }
                     }
                 }
             }
         }
+    </script>
+
+    <!-- Instant Theme Detection Script (Zero Flicker) -->
+    <script>
+        (function() {
+            try {
+                const saved = localStorage.getItem('salaryscope_theme_mode');
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (saved === 'light' || (!saved && !prefersDark)) {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                }
+            } catch(e) {}
+        })();
     </script>
 
     <!-- FontAwesome Icons -->
@@ -46,104 +50,24 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* Executive Professional Palette */
-        :root {
-            --bg-body: #0F172A;
-            --bg-card: #1E293B;
-            --border-card: #334155;
-            --cockpit-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
-            --cockpit-border: #3B82F6;
-            --accent-brand: #2563EB;
-            --accent-sub: #3B82F6;
-            --accent-green: #10B981;
-            --control-bg: #0F172A;
-            --control-border: #334155;
-            --text-main: #F8FAFC;
-            --text-sub: #94A3B8;
+        /* Smooth Theme Transition */
+        *, *::before, *::after {
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
         }
 
-        body.theme-light {
-            --bg-body: #F8FAFC;
-            --bg-card: #FFFFFF;
-            --border-card: #E2E8F0;
-            --cockpit-bg: linear-gradient(135deg, #F1F5F9 0%, #FFFFFF 100%);
-            --cockpit-border: #2563EB;
-            --accent-brand: #2563EB;
-            --accent-sub: #1D4ED8;
-            --accent-green: #059669;
-            --control-bg: #FFFFFF;
-            --control-border: #CBD5E1;
-            --text-main: #0F172A;
-            --text-sub: #64748B;
-        }
-
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-            transition: background-color 0.25s ease, color 0.25s ease;
-        }
-
-        .pro-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.15);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .valuation-cockpit {
-            background: var(--cockpit-bg);
-            border: 1.5px solid var(--border-card);
-            border-top: 3px solid var(--cockpit-border);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.25);
-            transition: all 0.25s ease;
-        }
-
-        .control-shell {
-            height: 44px;
-            background: var(--control-bg);
-            border: 1px solid var(--control-border);
-            border-radius: 10px;
-            padding: 0 14px;
-            color: var(--text-main);
-            font-size: 0.875rem;
-            width: 100%;
-            transition: all 0.15s ease;
-            display: flex;
-            align-items: center;
-        }
-        .control-shell:hover {
-            border-color: #64748B;
-        }
-        .control-shell:focus {
-            outline: none;
-            border-color: #2563EB;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-            background: var(--bg-card);
-        }
-
-        .control-label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-sub);
-            margin-bottom: 6px;
-            letter-spacing: 0.01em;
-        }
-
-        /* Clean Corporate Range Slider */
+        /* Clean Professional Sliders */
         .slider-pro {
             -webkit-appearance: none;
             width: 100%;
             height: 6px;
             border-radius: 9999px;
-            background: #334155;
             outline: none;
+        }
+        .dark .slider-pro {
+            background: #334155;
+        }
+        .light .slider-pro {
+            background: #CBD5E1;
         }
         .slider-pro::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -153,82 +77,78 @@
             border-radius: 50%;
             background: #2563EB;
             cursor: pointer;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-            border: 2px solid #FFFFFF;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            border: 2.5px solid #FFFFFF;
             transition: transform 0.15s ease;
         }
         .slider-pro::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
+            transform: scale(1.18);
             background: #1D4ED8;
-        }
-
-        .btn-primary-corp {
-            background: #2563EB;
-            color: #FFFFFF;
-            border-radius: 10px;
-            transition: all 0.15s ease;
-        }
-        .btn-primary-corp:hover {
-            background: #1D4ED8;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
         /* Toast */
-        #proToast {
+        #themeToast {
             visibility: hidden;
-            min-width: 280px;
+            min-width: 270px;
             transform: translateY(20px);
             transition: all 0.25s ease;
         }
-        #proToast.show {
+        #themeToast.show {
             visibility: visible;
             transform: translateY(0);
         }
     </style>
 </head>
-<body class="min-h-screen selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200">
 
     <!-- Toast Notification -->
-    <div id="proToast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white shadow-2xl">
+    <div id="themeToast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white shadow-2xl">
         <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
             <i class="fa-solid fa-check"></i>
         </div>
         <div>
             <span class="text-xs font-semibold text-white block">Assessment Copied!</span>
-            <span class="text-[11px] text-slate-400">Executive report ready to paste.</span>
+            <span class="text-[11px] text-slate-400">Executive report ready in clipboard.</span>
         </div>
     </div>
 
-    <!-- Professional Navigation Header -->
-    <header class="sticky top-0 z-50 bg-[var(--bg-body)]/95 backdrop-blur-md border-b border-[var(--border-card)]">
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm">
                     <i class="fa-solid fa-chart-line text-sm"></i>
                 </div>
                 <div>
-                    <span class="text-base font-bold tracking-tight text-white flex items-center gap-2">
+                    <span class="text-base font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
                         SalaryScope AI
-                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-950 text-blue-400 border border-blue-800 font-mono font-semibold">ENTERPRISE</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400 border border-blue-200 dark:border-blue-800 font-mono font-semibold">ENTERPRISE</span>
                     </span>
                 </div>
             </div>
 
-            <!-- Mode Switcher (Dark Corporate vs Clean White) -->
-            <div class="flex items-center gap-2">
-                <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300 mr-2">
-                    <a href="#predictor" class="hover:text-blue-400 transition-colors">Predictor</a>
-                    <a href="#benchmark" class="hover:text-blue-400 transition-colors">Benchmark</a>
-                    <a href="#analytics" class="hover:text-blue-400 transition-colors">Analytics</a>
-                    <a href="#explorer" class="hover:text-blue-400 transition-colors">Dataset</a>
-                    <a href="#methodology" class="hover:text-blue-400 transition-colors">Methodology</a>
-                </nav>
+            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#predictor" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Predictor</a>
+                <a href="#benchmark" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Benchmark</a>
+                <a href="#analytics" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Analytics</a>
+                <a href="#explorer" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dataset Vault</a>
+                <a href="#methodology" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Methodology</a>
+            </nav>
 
-                <button type="button" onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700 transition-colors cursor-pointer" title="Toggle Dark / Light Theme">
-                    <i id="themeIcon" class="fa-solid fa-moon"></i>
-                </button>
+            <div class="flex items-center gap-3">
+                <!-- Segmented Pro Theme Switcher -->
+                <div class="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 shadow-xs" role="group" aria-label="Theme Switcher">
+                    <button type="button" onclick="setTheme('light')" id="themeLightBtn" class="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer" title="Light Mode (Press 'T' to toggle)">
+                        <i class="fa-solid fa-sun text-amber-500 text-xs"></i>
+                        <span>Light</span>
+                    </button>
+                    <button type="button" onclick="setTheme('dark')" id="themeDarkBtn" class="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer" title="Dark Mode (Press 'T' to toggle)">
+                        <i class="fa-solid fa-moon text-blue-400 text-xs"></i>
+                        <span>Dark</span>
+                    </button>
+                </div>
 
-                <a href="https://github.com/asifhasanarpon/Ai-Salary-Predictor" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition-all">
+                <a href="https://github.com/asifhasanarpon/Ai-Salary-Predictor" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-200 hover:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold border border-slate-700 transition-all">
                     <i class="fa-brands fa-github text-sm"></i>
                     <span class="hidden sm:inline">GitHub</span>
                 </a>
@@ -236,45 +156,45 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Workspace -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-14">
 
-        <!-- 1. HERO SECTION (Executive & Clean) -->
+        <!-- 1. HERO SECTION -->
         <section class="text-center max-w-3xl mx-auto space-y-4 pt-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span>Trained on 5,000 Verified AI & Data Science Industry Records</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>Trained on 5,000 Verified AI & Data Science Records</span>
             </div>
 
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                AI & Data Science <span class="text-blue-400">Compensation Intelligence</span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                AI & Data Science <span class="text-blue-600 dark:text-blue-400">Compensation Intelligence</span>
             </h1>
 
-            <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
-                An empirical machine learning platform deploying our top-performing <strong class="text-emerald-400 font-semibold">Random Forest Regressor (R² = 0.744)</strong> to provide objective compensation valuations across 15 career attributes.
+            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                Supervised machine learning valuation deploying our champion <strong class="text-emerald-600 dark:text-emerald-400 font-semibold">Random Forest Regressor (R² = 0.744)</strong> to provide objective compensation valuations across 15 career attributes.
             </p>
 
-            <!-- 4 Corporate KPI Cards -->
+            <!-- 4 Corporate KPI Badges -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-left">
-                <div class="pro-card p-4 border-l-4 border-l-emerald-500">
-                    <span class="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-semibold block">Top Model</span>
-                    <span class="text-sm sm:text-base font-bold text-white block mt-0.5">Random Forest</span>
-                    <span class="text-[11px] text-emerald-400 font-mono font-semibold">R² = 0.7440</span>
+                <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm border-l-4 border-l-emerald-500">
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-mono font-semibold block">Champion Model</span>
+                    <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white block mt-0.5">Random Forest</span>
+                    <span class="text-[11px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">R² = 0.7440</span>
                 </div>
-                <div class="pro-card p-4 border-l-4 border-l-blue-500">
-                    <span class="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-semibold block">Mean Error</span>
-                    <span class="text-sm sm:text-base font-bold text-white block mt-0.5">±$19,991</span>
-                    <span class="text-[11px] text-blue-400 font-mono font-semibold">42.6% Lower MAE</span>
+                <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm border-l-4 border-l-blue-500">
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-mono font-semibold block">Prediction Error</span>
+                    <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white block mt-0.5">±$19,991</span>
+                    <span class="text-[11px] text-blue-600 dark:text-blue-400 font-mono font-semibold">42.6% Lower MAE</span>
                 </div>
-                <div class="pro-card p-4 border-l-4 border-l-slate-500">
-                    <span class="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-semibold block">Holdout Test Set</span>
-                    <span class="text-sm sm:text-base font-bold text-white block mt-0.5">1,000 Rows</span>
-                    <span class="text-[11px] text-slate-300 font-mono">20% Split</span>
+                <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm border-l-4 border-l-slate-400 dark:border-l-slate-600">
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-mono font-semibold block">Holdout Test Set</span>
+                    <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white block mt-0.5">1,000 Rows</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-300 font-mono">20% Split</span>
                 </div>
-                <div class="pro-card p-4 border-l-4 border-l-indigo-500">
-                    <span class="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-semibold block">Industry Median</span>
-                    <span class="text-sm sm:text-base font-bold text-white block mt-0.5">$124,500</span>
-                    <span class="text-[11px] text-indigo-400 font-mono">Range: $18k–$385k</span>
+                <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm border-l-4 border-l-indigo-500">
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-mono font-semibold block">Median Market Wage</span>
+                    <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white block mt-0.5">$124,500</span>
+                    <span class="text-[11px] text-indigo-600 dark:text-indigo-400 font-mono">Range: $18k–$385k</span>
                 </div>
             </div>
         </section>
@@ -282,122 +202,122 @@
         <!-- 2. PREDICTOR SECTION -->
         <section id="predictor" class="space-y-6 scroll-mt-20">
             
-            <!-- VALUATION COCKPIT BANNER -->
-            <div class="valuation-cockpit p-6 sm:p-8 space-y-6">
+            <!-- VALUATION COCKPIT (Adapts cleanly to Light & Dark) -->
+            <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg border-t-4 border-t-blue-600 space-y-6">
                 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                     
                     <!-- Left: Primary Salary Display (5 cols) -->
-                    <div class="lg:col-span-5 space-y-2 text-center lg:text-left border-b lg:border-b-0 lg:border-r border-slate-700/60 pb-5 lg:pb-0 lg:pr-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono font-semibold border border-emerald-500/20">
+                    <div class="lg:col-span-5 space-y-2 text-center lg:text-left border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-slate-800 pb-5 lg:pb-0 lg:pr-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 text-xs font-mono font-semibold border border-emerald-200 dark:border-emerald-800">
                             <i class="fa-solid fa-circle-check text-[11px]"></i>
                             <span>Random Forest Inference • R² = 0.744</span>
                         </div>
 
-                        <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold block pt-1">
+                        <div class="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold block pt-1">
                             Estimated Annual Compensation
                         </div>
 
                         <div class="text-4xl sm:text-5xl font-black tracking-tight flex items-center justify-center lg:justify-start gap-1">
-                            <span class="text-emerald-400 font-mono">$</span>
-                            <span id="res_salary" class="text-white font-mono font-black">122,700</span>
-                            <span class="text-sm text-slate-400 font-normal font-mono ml-1">/ year</span>
+                            <span class="text-emerald-600 dark:text-emerald-400 font-mono">$</span>
+                            <span id="res_salary" class="text-slate-900 dark:text-white font-mono font-black">122,700</span>
+                            <span class="text-sm text-slate-500 dark:text-slate-400 font-normal font-mono ml-1">/ year</span>
                         </div>
 
-                        <div class="flex items-center justify-center lg:justify-start gap-4 text-xs font-mono text-slate-400 pt-1">
-                            <span>Monthly: <strong id="res_monthly" class="text-slate-100 font-bold">$10,225/mo</strong></span>
+                        <div class="flex items-center justify-center lg:justify-start gap-4 text-xs font-mono text-slate-600 dark:text-slate-400 pt-1">
+                            <span>Monthly: <strong id="res_monthly" class="text-slate-900 dark:text-slate-100 font-bold">$10,225/mo</strong></span>
                             <span>•</span>
-                            <span>Hourly: <strong id="res_hourly" class="text-blue-300 font-bold">$59.00/hr</strong></span>
+                            <span>Hourly: <strong id="res_hourly" class="text-blue-600 dark:text-blue-400 font-bold">$59.00/hr</strong></span>
                         </div>
 
-                        <div class="text-[11px] font-mono text-slate-400 flex items-center justify-center lg:justify-start gap-2 pt-0.5">
+                        <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 flex items-center justify-center lg:justify-start gap-2 pt-0.5">
                             <span>Confidence Band (±MAE): </span>
-                            <strong id="res_band" class="text-slate-200 font-semibold">$102.7k – $142.7k</strong>
+                            <strong id="res_band" class="text-slate-700 dark:text-slate-200 font-semibold">$102.7k – $142.7k</strong>
                         </div>
                     </div>
 
                     <!-- Middle: Model Consensus Matrix (4 cols) -->
-                    <div class="lg:col-span-4 space-y-2 border-b lg:border-b-0 lg:border-r border-slate-700/60 pb-5 lg:pb-0 lg:pr-6">
+                    <div class="lg:col-span-4 space-y-2 border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-slate-800 pb-5 lg:pb-0 lg:pr-6">
                         <div class="flex items-center justify-between">
-                            <span class="text-[11px] uppercase tracking-wider text-slate-400 font-bold block">Model Consensus:</span>
-                            <span id="res_standing" class="text-[10px] font-mono font-bold text-blue-300 px-2 py-0.5 rounded bg-blue-950/80 border border-blue-800">
+                            <span class="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold block">Model Consensus:</span>
+                            <span id="res_standing" class="text-[10px] font-mono font-bold text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800">
                                 Top 38% Competitive
                             </span>
                         </div>
 
                         <div class="grid grid-cols-3 gap-2 font-mono text-center">
-                            <div class="p-2.5 rounded-xl bg-emerald-950/30 border border-emerald-500/40">
-                                <span class="text-[10px] text-emerald-400 font-bold block">Random Forest</span>
-                                <span id="res_rf" class="text-xs font-bold text-white block mt-0.5">$122,700</span>
-                                <span class="text-[9px] text-emerald-400 font-semibold block">MAE: $19.9k</span>
+                            <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800">
+                                <span class="text-[10px] text-emerald-700 dark:text-emerald-400 font-bold block">Random Forest</span>
+                                <span id="res_rf" class="text-xs font-bold text-slate-900 dark:text-white block mt-0.5">$122,700</span>
+                                <span class="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold block">MAE: $19.9k</span>
                             </div>
-                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-                                <span class="text-[10px] text-slate-400 block">Linear (OLS)</span>
-                                <span id="res_lr" class="text-xs font-bold text-slate-300 block mt-0.5">$119,400</span>
-                                <span class="text-[9px] text-slate-500 block">MAE: $34.8k</span>
+                            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Linear (OLS)</span>
+                                <span id="res_lr" class="text-xs font-bold text-slate-700 dark:text-slate-300 block mt-0.5">$119,400</span>
+                                <span class="text-[9px] text-slate-400 dark:text-slate-500 block">MAE: $34.8k</span>
                             </div>
-                            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
-                                <span class="text-[10px] text-slate-400 block">KNN (k=5)</span>
-                                <span id="res_knn" class="text-xs font-bold text-slate-300 block mt-0.5">$115,800</span>
-                                <span class="text-[9px] text-slate-500 block">MAE: $35.4k</span>
+                            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">KNN (k=5)</span>
+                                <span id="res_knn" class="text-xs font-bold text-slate-700 dark:text-slate-300 block mt-0.5">$115,800</span>
+                                <span class="text-[9px] text-slate-400 dark:text-slate-500 block">MAE: $35.4k</span>
                             </div>
                         </div>
 
-                        <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                        <div class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between pt-1">
                             <span>Consensus Agreement:</span>
-                            <span class="text-emerald-400 font-mono font-bold">97.3% Match</span>
+                            <span class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">97.3% Match</span>
                         </div>
                     </div>
 
                     <!-- Right: Quick Career Optimization Levers (3 cols) -->
                     <div class="lg:col-span-3 space-y-2 text-xs">
-                        <span class="text-[11px] uppercase tracking-wider text-slate-400 font-bold block">Career Scenario Simulations:</span>
+                        <span class="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold block">Career Scenario Simulations:</span>
                         <div class="grid grid-cols-2 gap-2 font-mono">
-                            <button type="button" onclick="boostYears()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-left transition-all group cursor-pointer">
-                                <span class="text-slate-200 block font-semibold text-[11px] group-hover:text-emerald-300">+3 Yrs Exp</span>
-                                <span class="text-[10px] text-emerald-400 block">+$11,550</span>
+                            <button type="button" onclick="boostYears()" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 text-left transition-all cursor-pointer">
+                                <span class="text-slate-800 dark:text-slate-200 block font-semibold text-[11px]">+3 Yrs Exp</span>
+                                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 block">+$11,550</span>
                             </button>
-                            <button type="button" onclick="boostLeadership()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-blue-500/40 text-left transition-all group cursor-pointer">
-                                <span class="text-slate-200 block font-semibold text-[11px] group-hover:text-blue-300">Lead Team</span>
-                                <span class="text-[10px] text-blue-400 block">+$16,500</span>
+                            <button type="button" onclick="boostLeadership()" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 hover:border-blue-500 text-left transition-all cursor-pointer">
+                                <span class="text-slate-800 dark:text-slate-200 block font-semibold text-[11px]">Lead Team</span>
+                                <span class="text-[10px] text-blue-600 dark:text-blue-400 block">+$16,500</span>
                             </button>
-                            <button type="button" onclick="boostEducation()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/40 text-left transition-all group cursor-pointer">
-                                <span class="text-slate-200 block font-semibold text-[11px] group-hover:text-indigo-300">Doctorate</span>
-                                <span class="text-[10px] text-indigo-400 block">+$12,000</span>
+                            <button type="button" onclick="boostEducation()" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-left transition-all cursor-pointer">
+                                <span class="text-slate-800 dark:text-slate-200 block font-semibold text-[11px]">Doctorate</span>
+                                <span class="text-[10px] text-indigo-600 dark:text-indigo-400 block">+$12,000</span>
                             </button>
-                            <button type="button" onclick="boostAI()" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/40 text-left transition-all group cursor-pointer">
-                                <span class="text-slate-200 block font-semibold text-[11px] group-hover:text-amber-300">15h AI Tools</span>
-                                <span class="text-[10px] text-amber-400 block">+$5,800</span>
+                            <button type="button" onclick="boostAI()" class="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-left transition-all cursor-pointer">
+                                <span class="text-slate-800 dark:text-slate-200 block font-semibold text-[11px]">15h AI Tools</span>
+                                <span class="text-[10px] text-amber-600 dark:text-amber-400 block">+$5,800</span>
                             </button>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Seniority Progression Visual Ladder Bar -->
-                <div class="pt-2 border-t border-slate-700/60">
-                    <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-mono">
+                <!-- Seniority Progression Continuum -->
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2 font-mono">
                         <span class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-layer-group text-blue-400"></i> Seniority Compensation Continuum:
+                            <i class="fa-solid fa-layer-group text-blue-600 dark:text-blue-400"></i> Seniority Compensation Continuum:
                         </span>
-                        <span id="disp_seniority_label" class="text-emerald-400 font-bold">Mid Level Position ($98.5k Median)</span>
+                        <span id="disp_seniority_label" class="text-emerald-600 dark:text-emerald-400 font-bold">Mid Level Position ($98.5k Median)</span>
                     </div>
 
                     <div class="grid grid-cols-5 gap-1.5 font-mono text-[10px] text-center">
-                        <div id="ladder_Entry" class="py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 transition-all">
-                            <span>Entry</span> <strong class="block text-slate-200">$64k</strong>
+                        <div id="ladder_Entry" class="py-1.5 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 transition-all">
+                            <span>Entry</span> <strong class="block text-slate-800 dark:text-slate-200">$64k</strong>
                         </div>
-                        <div id="ladder_Mid" class="py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/60 text-emerald-300 transition-all font-semibold">
-                            <span>Mid</span> <strong class="block text-white">$98.5k</strong>
+                        <div id="ladder_Mid" class="py-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-950/40 border border-emerald-400 dark:border-emerald-600 text-emerald-800 dark:text-emerald-300 font-semibold transition-all shadow-xs">
+                            <span>Mid</span> <strong class="block text-emerald-900 dark:text-white">$98.5k</strong>
                         </div>
-                        <div id="ladder_Senior" class="py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 transition-all">
-                            <span>Senior</span> <strong class="block text-slate-200">$142k</strong>
+                        <div id="ladder_Senior" class="py-1.5 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 transition-all">
+                            <span>Senior</span> <strong class="block text-slate-800 dark:text-slate-200">$142k</strong>
                         </div>
-                        <div id="ladder_Lead" class="py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 transition-all">
-                            <span>Lead</span> <strong class="block text-slate-200">$182k</strong>
+                        <div id="ladder_Lead" class="py-1.5 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 transition-all">
+                            <span>Lead</span> <strong class="block text-slate-800 dark:text-slate-200">$182k</strong>
                         </div>
-                        <div id="ladder_Executive" class="py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 transition-all">
-                            <span>Executive</span> <strong class="block text-slate-200">$238k</strong>
+                        <div id="ladder_Executive" class="py-1.5 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 transition-all">
+                            <span>Executive</span> <strong class="block text-slate-800 dark:text-slate-200">$238k</strong>
                         </div>
                     </div>
                 </div>
@@ -405,25 +325,25 @@
             </div>
 
             <!-- 15-FEATURE PARAMETER STUDIO -->
-            <div class="pro-card p-6 sm:p-8 space-y-6">
+            <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-6">
                 
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-700">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
                     <div>
-                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-sliders text-blue-400 text-sm"></i>
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-blue-600 dark:text-blue-400 text-sm"></i>
                             Candidate Parameter Matrix (15 Features)
                         </h2>
-                        <p class="text-xs text-slate-400">Synchronized input controls calculating multi-model inference.</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Synchronized input controls calculating real-time model inference.</p>
                     </div>
 
                     <!-- Clean Quick Role Presets -->
                     <div class="flex items-center gap-2 flex-wrap">
-                        <span class="text-xs text-slate-400 font-mono">Role Presets:</span>
-                        <button type="button" onclick="applyPreset('junior')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition-colors cursor-pointer">Junior</button>
-                        <button type="button" onclick="applyPreset('mid')" class="px-2.5 py-1 rounded-lg bg-blue-900/40 hover:bg-blue-800/60 text-xs font-medium text-blue-300 border border-blue-700/60 transition-colors cursor-pointer">Mid-Level</button>
-                        <button type="button" onclick="applyPreset('senior')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition-colors cursor-pointer">Senior</button>
-                        <button type="button" onclick="applyPreset('director')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition-colors cursor-pointer">Director</button>
-                        <button type="button" onclick="resetDefaults()" class="px-2 py-1 text-xs text-slate-400 hover:text-white transition-colors ml-1 cursor-pointer" title="Reset Defaults"><i class="fa-solid fa-rotate-left"></i></button>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Role Presets:</span>
+                        <button type="button" onclick="applyPreset('junior')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer">Junior</button>
+                        <button type="button" onclick="applyPreset('mid')" class="px-2.5 py-1 rounded-lg bg-blue-100 dark:bg-blue-900/40 hover:bg-blue-200 dark:hover:bg-blue-800/60 text-xs font-medium text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 transition-colors cursor-pointer">Mid-Level</button>
+                        <button type="button" onclick="applyPreset('senior')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer">Senior</button>
+                        <button type="button" onclick="applyPreset('director')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer">Director</button>
+                        <button type="button" onclick="resetDefaults()" class="px-2 py-1 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors ml-1 cursor-pointer" title="Reset Defaults"><i class="fa-solid fa-rotate-left"></i></button>
                     </div>
                 </div>
 
@@ -434,17 +354,17 @@
 
                         <!-- MODULE 1: Identity & Technical Expertise -->
                         <div class="space-y-4">
-                            <div class="text-xs font-bold uppercase tracking-wider text-blue-400 pb-1.5 border-b border-slate-700 flex items-center justify-between">
+                            <div class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fa-solid fa-user-check"></i> 1. Role & Profile</span>
-                                <span class="text-[10px] text-slate-500 font-mono">5 Inputs</span>
+                                <span class="text-[10px] text-slate-400 font-mono">5 Inputs</span>
                             </div>
 
                             <div>
-                                <label class="control-label" for="job_title">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="job_title">
                                     <span>Job Title</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="job_title" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="job_title" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="Data Scientist" selected>Data Scientist</option>
                                         <option value="Machine Learning Engineer">Machine Learning Engineer</option>
                                         <option value="AI Engineer">AI Engineer</option>
@@ -458,59 +378,59 @@
                                         <option value="MLOps Engineer">MLOps Engineer</option>
                                         <option value="Business Intelligence Analyst">Business Intelligence Analyst</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="experience_level">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="experience_level">
                                     <span>Seniority Tier</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="experience_level" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="experience_level" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="Entry">Entry Level</option>
                                         <option value="Mid" selected>Mid Level</option>
                                         <option value="Senior">Senior Level</option>
                                         <option value="Lead">Lead Level</option>
                                         <option value="Executive">Executive / Director</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
-                            <!-- Years of Experience (Pro Slider + Dynamic Badge) -->
+                            <!-- Years of Experience -->
                             <div>
-                                <label class="control-label" for="years_experience">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="years_experience">
                                     <span>Years of Experience (0 - 24)</span>
-                                    <span id="disp_years_exp" class="text-blue-400 font-mono font-bold">6.0 Yrs</span>
+                                    <span id="disp_years_exp" class="text-blue-600 dark:text-blue-400 font-mono font-bold">6.0 Yrs</span>
                                 </label>
-                                <div class="control-shell flex items-center px-3">
+                                <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="years_experience" min="0" max="24" step="0.5" value="6.0" oninput="calculateSalary()" class="slider-pro cursor-pointer">
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="education_level">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="education_level">
                                     <span>Education Level</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="education_level" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="education_level" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="Bachelors">Bachelor's Degree</option>
                                         <option value="Masters" selected>Master's Degree</option>
                                         <option value="PhD">Doctorate (PhD)</option>
                                         <option value="Bootcamp">Bootcamp Graduate</option>
                                         <option value="Self-taught">Self-Taught</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="primary_language">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="primary_language">
                                     <span>Core Language</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="primary_language" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="primary_language" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="Python" selected>Python</option>
                                         <option value="SQL">SQL</option>
                                         <option value="R">R</option>
@@ -519,24 +439,24 @@
                                         <option value="Rust">Rust</option>
                                         <option value="Julia">Julia</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
                         </div>
 
                         <!-- MODULE 2: Geography & Organization -->
                         <div class="space-y-4">
-                            <div class="text-xs font-bold uppercase tracking-wider text-blue-400 pb-1.5 border-b border-slate-700 flex items-center justify-between">
+                            <div class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fa-solid fa-building"></i> 2. Market & Organization</span>
-                                <span class="text-[10px] text-slate-500 font-mono">5 Inputs</span>
+                                <span class="text-[10px] text-slate-400 font-mono">5 Inputs</span>
                             </div>
 
                             <div>
-                                <label class="control-label" for="company_location">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="company_location">
                                     <span>Company Location</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="company_location" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="company_location" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="US" selected>United States (US)</option>
                                         <option value="CA">Canada (CA)</option>
                                         <option value="GB">United Kingdom (GB)</option>
@@ -550,30 +470,30 @@
                                         <option value="ES">Spain (ES)</option>
                                         <option value="PL">Poland (PL)</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="company_size">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="company_size">
                                     <span>Company Size</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="company_size" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="company_size" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="L">L - Large Enterprise (500+ employees)</option>
                                         <option value="M" selected>M - Mid-Market (50-250 employees)</option>
                                         <option value="S">S - Startup (&lt;50 employees)</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="industry">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="industry">
                                     <span>Industry Sector</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="industry" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="industry" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="Technology" selected>Technology & Software</option>
                                         <option value="Finance">Finance & Banking</option>
                                         <option value="Healthcare">Healthcare & BioTech</option>
@@ -585,100 +505,100 @@
                                         <option value="Government">Government & Defense</option>
                                         <option value="Media">Media & Entertainment</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="employment_type">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="employment_type">
                                     <span>Contract Type</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="employment_type" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="employment_type" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="Full-time" selected>Full-time Permanent</option>
                                         <option value="Part-time">Part-time</option>
                                         <option value="Contract">Independent Contract</option>
                                         <option value="Freelance">Freelance</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="remote_ratio">
-                                    <span>Remote Work Ratio</span>
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="remote_ratio">
+                                    <span>Remote Arrangement</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="remote_ratio" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="remote_ratio" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="0">0% - Fully On-Site</option>
                                         <option value="50" selected>50% - Hybrid Workplace</option>
                                         <option value="100">100% - Fully Remote</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
                         </div>
 
                         <!-- MODULE 3: Workload & Productivity -->
                         <div class="space-y-4">
-                            <div class="text-xs font-bold uppercase tracking-wider text-blue-400 pb-1.5 border-b border-slate-700 flex items-center justify-between">
+                            <div class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> 3. Performance & Workload</span>
-                                <span class="text-[10px] text-slate-500 font-mono">5 Inputs</span>
+                                <span class="text-[10px] text-slate-400 font-mono">5 Inputs</span>
                             </div>
 
                             <!-- Weekly Hours Slider -->
                             <div>
-                                <label class="control-label" for="weekly_hours">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="weekly_hours">
                                     <span>Weekly Work Hours</span>
-                                    <span id="disp_weekly_hours" class="text-blue-400 font-mono font-bold">44 hrs/wk</span>
+                                    <span id="disp_weekly_hours" class="text-blue-600 dark:text-blue-400 font-mono font-bold">44 hrs/wk</span>
                                 </label>
-                                <div class="control-shell flex items-center px-3">
+                                <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="weekly_hours" min="20" max="80" step="1" value="44" oninput="calculateSalary()" class="slider-pro cursor-pointer">
                                 </div>
                             </div>
 
                             <!-- AI Tools Slider -->
                             <div>
-                                <label class="control-label" for="ai_tools_hours">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="ai_tools_hours">
                                     <span>AI Tools Usage (Hours/Week)</span>
-                                    <span id="disp_ai_hours" class="text-emerald-400 font-mono font-bold">8.0 hrs/wk</span>
+                                    <span id="disp_ai_hours" class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">8.0 hrs/wk</span>
                                 </label>
-                                <div class="control-shell flex items-center px-3">
+                                <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="ai_tools_hours" min="0" max="30" step="0.5" value="8.0" oninput="calculateSalary()" class="slider-pro cursor-pointer">
                                 </div>
                             </div>
 
                             <div>
-                                <label class="control-label" for="manages_people">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="manages_people">
                                     <span>Management (Leadership)</span>
                                 </label>
                                 <div class="relative">
-                                    <select id="manages_people" onchange="calculateSalary()" class="control-shell appearance-none cursor-pointer pr-8">
+                                    <select id="manages_people" onchange="calculateSalary()" class="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium appearance-none cursor-pointer pr-8 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
                                         <option value="0" selected>No (Individual Contributor)</option>
                                         <option value="1">Yes (Team Lead / Manager)</option>
                                     </select>
-                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-500 pointer-events-none"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-xs text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
 
                             <!-- Certifications Count Slider -->
                             <div>
-                                <label class="control-label" for="certifications_count">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="certifications_count">
                                     <span>Certifications Count</span>
-                                    <span id="disp_certs" class="text-blue-400 font-mono font-bold">2 Certs</span>
+                                    <span id="disp_certs" class="text-blue-600 dark:text-blue-400 font-mono font-bold">2 Certs</span>
                                 </label>
-                                <div class="control-shell flex items-center px-3">
+                                <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="certifications_count" min="0" max="10" step="1" value="2" oninput="calculateSalary()" class="slider-pro cursor-pointer">
                                 </div>
                             </div>
 
                             <!-- Job Satisfaction Slider -->
                             <div>
-                                <label class="control-label" for="job_satisfaction">
+                                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="job_satisfaction">
                                     <span>Job Satisfaction (1 - 10)</span>
-                                    <span id="disp_satisfaction" class="text-emerald-400 font-mono font-bold">7.0 / 10</span>
+                                    <span id="disp_satisfaction" class="text-emerald-600 dark:text-emerald-400 font-mono font-bold">7.0 / 10</span>
                                 </label>
-                                <div class="control-shell flex items-center px-3">
+                                <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="job_satisfaction" min="1.0" max="10.0" step="0.5" value="7.0" oninput="calculateSalary()" class="slider-pro cursor-pointer">
                                 </div>
                             </div>
@@ -687,17 +607,17 @@
                     </div>
 
                     <!-- Clean Action Buttons -->
-                    <div class="flex flex-wrap items-center justify-between gap-3 pt-5 border-t border-slate-700">
-                        <button type="button" onclick="copyAssessment()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-blue-300 border border-slate-700 hover:border-blue-500 transition-all flex items-center gap-2 cursor-pointer shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-5 border-t border-slate-200 dark:border-slate-800">
+                        <button type="button" onclick="copyAssessment()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-blue-600 dark:text-blue-400 border border-slate-200 dark:border-slate-700 transition-all flex items-center gap-2 cursor-pointer shadow-xs">
                             <i class="fa-regular fa-copy"></i>
                             <span>Copy Assessment Summary</span>
                         </button>
 
                         <div class="flex items-center gap-3">
-                            <button type="button" onclick="resetDefaults()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition-colors cursor-pointer">
+                            <button type="button" onclick="resetDefaults()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">
                                 Reset Defaults
                             </button>
-                            <button type="submit" class="btn-primary-corp px-6 py-2.5 text-xs font-bold transition-all flex items-center gap-2 cursor-pointer">
+                            <button type="submit" class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition-all flex items-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-calculator"></i>
                                 <span>Calculate Valuation</span>
                             </button>
@@ -712,20 +632,20 @@
 
         <!-- 3. MODEL BENCHMARK SECTION -->
         <section id="benchmark" class="space-y-4 scroll-mt-20">
-            <div class="border-b border-slate-700 pb-3">
-                <div class="flex items-center gap-2 text-emerald-400 text-xs font-mono font-semibold uppercase tracking-wider">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold uppercase tracking-wider">
                     <i class="fa-solid fa-square-poll-vertical"></i> Empirical Evaluation
                 </div>
-                <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
                     Supervised Model Benchmark (1,000 Test Records)
                 </h2>
-                <p class="text-xs text-slate-400 mt-0.5">Statistical generalization performance on 20% unseen stratified holdout test split.</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Statistical generalization performance on 20% unseen stratified holdout test split.</p>
             </div>
 
             <!-- Benchmark Table -->
-            <div class="pro-card overflow-x-auto">
+            <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md overflow-x-auto">
                 <table class="w-full text-left text-xs font-mono">
-                    <thead class="bg-slate-900/90 text-slate-400 uppercase border-b border-slate-700 font-sans">
+                    <thead class="bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-800 font-sans">
                         <tr>
                             <th class="py-3.5 px-4 font-semibold">Model Architecture</th>
                             <th class="py-3.5 px-4">R² Score</th>
@@ -734,49 +654,49 @@
                             <th class="py-3.5 px-4 font-sans">Empirical Verdict</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-700 font-sans">
-                        <tr class="bg-emerald-950/20 font-medium">
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-sans">
+                        <tr class="bg-emerald-50/60 dark:bg-emerald-950/20 font-medium">
                             <td class="py-3.5 px-4 flex items-center gap-2.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-xs"></span>
                                 <div>
-                                    <strong class="text-emerald-300 block">Random Forest Regressor</strong>
-                                    <span class="text-[10px] text-slate-400 font-mono">n_estimators=100, max_depth=12</span>
+                                    <strong class="text-emerald-800 dark:text-emerald-300 block">Random Forest Regressor</strong>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-mono">n_estimators=100, max_depth=12</span>
                                 </div>
                             </td>
-                            <td class="py-3.5 px-4 font-mono text-emerald-400 font-bold text-sm">0.7440</td>
-                            <td class="py-3.5 px-4 font-mono text-white">$19,990.66</td>
-                            <td class="py-3.5 px-4 font-mono text-white">$27,907.95</td>
+                            <td class="py-3.5 px-4 font-mono text-emerald-700 dark:text-emerald-400 font-bold text-sm">0.7440</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-900 dark:text-white font-semibold">$19,990.66</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-900 dark:text-white font-semibold">$27,907.95</td>
                             <td class="py-3.5 px-4">
-                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-500/30">
                                     🏆 Champion (42.6% Lower Error)
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td class="py-3.5 px-4 flex items-center gap-2.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
                                 <div>
-                                    <span class="text-slate-200 block">Linear Regression (OLS)</span>
-                                    <span class="text-[10px] text-slate-400 font-mono">Standardized continuous features</span>
+                                    <span class="text-slate-800 dark:text-slate-200 block">Linear Regression (OLS)</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Standardized features</span>
                                 </div>
                             </td>
-                            <td class="py-3.5 px-4 font-mono text-slate-300">0.3476</td>
-                            <td class="py-3.5 px-4 font-mono text-slate-300">$34,829.95</td>
-                            <td class="py-3.5 px-4 font-mono text-slate-300">$44,553.98</td>
-                            <td class="py-3.5 px-4 text-xs text-slate-400">Linear Baseline</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-300">0.3476</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-300">$34,829.95</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-300">$44,553.98</td>
+                            <td class="py-3.5 px-4 text-xs text-slate-500 dark:text-slate-400">Linear Baseline</td>
                         </tr>
                         <tr>
                             <td class="py-3.5 px-4 flex items-center gap-2.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
                                 <div>
-                                    <span class="text-slate-200 block">K-Nearest Neighbors (KNN)</span>
-                                    <span class="text-[10px] text-slate-400 font-mono">k=5, Euclidean metric</span>
+                                    <span class="text-slate-800 dark:text-slate-200 block">K-Nearest Neighbors (KNN)</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-mono">k=5, Euclidean metric</span>
                                 </div>
                             </td>
-                            <td class="py-3.5 px-4 font-mono text-slate-300">0.2989</td>
-                            <td class="py-3.5 px-4 font-mono text-slate-300">$35,372.49</td>
-                            <td class="py-3.5 px-4 font-mono text-slate-300">$46,185.77</td>
-                            <td class="py-3.5 px-4 text-xs text-slate-400">Non-Parametric Local</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-300">0.2989</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-300">$35,372.49</td>
+                            <td class="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-300">$46,185.77</td>
+                            <td class="py-3.5 px-4 text-xs text-slate-500 dark:text-slate-400">Non-Parametric Local</td>
                         </tr>
                     </tbody>
                 </table>
@@ -785,22 +705,22 @@
 
         <!-- 4. VISUAL ANALYTICS SECTION -->
         <section id="analytics" class="space-y-4 scroll-mt-20">
-            <div class="border-b border-slate-700 pb-3">
-                <div class="flex items-center gap-2 text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
                     <i class="fa-solid fa-chart-pie"></i> Visual Intelligence
                 </div>
-                <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
                     Exploratory Data Analysis & Empirical Patterns
                 </h2>
-                <p class="text-xs text-slate-400 mt-0.5">High-fidelity visualization of model precision and industry seniority trajectories.</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">High-fidelity visualization of model precision and industry seniority trajectories.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Chart 1: Model Accuracy -->
-                <div class="pro-card p-5 space-y-3">
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
                     <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono">Architecture Accuracy Comparison (R²)</span>
-                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Test Metrics</span>
+                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono">Architecture Accuracy Comparison (R²)</span>
+                        <span class="text-[10px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Test Metrics</span>
                     </div>
                     <div class="h-60">
                         <canvas id="chartAccuracy"></canvas>
@@ -808,10 +728,10 @@
                 </div>
 
                 <!-- Chart 2: Seniority Progression -->
-                <div class="pro-card p-5 space-y-3">
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-3">
                     <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono">Median Salary Trajectory by Seniority</span>
-                        <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">USD Annual</span>
+                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono">Median Salary Trajectory by Seniority</span>
+                        <span class="text-[10px] font-mono text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800">USD Annual</span>
                     </div>
                     <div class="h-60">
                         <canvas id="chartSeniority"></canvas>
@@ -822,18 +742,18 @@
 
         <!-- 5. DATASET VAULT -->
         <section id="explorer" class="space-y-4 scroll-mt-20">
-            <div class="border-b border-slate-700 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                 <div>
-                    <div class="flex items-center gap-2 text-slate-400 text-xs font-mono font-semibold uppercase tracking-wider">
+                    <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs font-mono font-semibold uppercase tracking-wider">
                         <i class="fa-solid fa-database"></i> Ground Truth Inspection
                     </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
                         Verified Dataset Vault (5,000 Records)
                     </h2>
-                    <p class="text-xs text-slate-400 mt-0.5">Inspect actual test samples to cross-verify predictions against ground truth compensation.</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Inspect actual test samples to cross-verify predictions against ground truth compensation.</p>
                 </div>
-                <button type="button" onclick="toggleDataset()" id="toggleDataBtn" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-semibold text-slate-200 border border-slate-700 hover:border-blue-500 transition-all flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-eye text-blue-400"></i>
+                <button type="button" onclick="toggleDataset()" id="toggleDataBtn" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-mono font-semibold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center gap-2 cursor-pointer shadow-xs">
+                    <i class="fa-solid fa-eye text-blue-600 dark:text-blue-400"></i>
                     <span id="toggleDataText">View Sample Records</span>
                 </button>
             </div>
@@ -842,15 +762,15 @@
             <div id="datasetContainer" class="hidden space-y-4">
                 <div class="flex items-center justify-between gap-3">
                     <div class="relative w-full max-w-sm">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-500"></i>
-                        <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Filter by job title, level, or country..." class="control-shell pl-8 text-xs">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-xs text-slate-400"></i>
+                        <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Filter by job title, level, or country..." class="w-full h-10 pl-8 pr-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-blue-500">
                     </div>
-                    <span id="dataCount" class="text-xs font-mono text-slate-400 shrink-0">80 sample records loaded</span>
+                    <span id="dataCount" class="text-xs font-mono text-slate-500 dark:text-slate-400 shrink-0">80 sample records loaded</span>
                 </div>
 
-                <div class="pro-card overflow-x-auto">
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md overflow-x-auto">
                     <table class="w-full text-left text-xs font-mono">
-                        <thead class="bg-slate-900 text-slate-400 uppercase border-b border-slate-700">
+                        <thead class="bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-800">
                             <tr>
                                 <th class="py-3 px-4">Job Title</th>
                                 <th class="py-3 px-3">Seniority</th>
@@ -861,7 +781,7 @@
                                 <th class="py-3 px-4 text-right">Ground Truth Salary</th>
                             </tr>
                         </thead>
-                        <tbody id="tableRows" class="divide-y divide-slate-700 font-sans">
+                        <tbody id="tableRows" class="divide-y divide-slate-200 dark:divide-slate-800 font-sans">
                             <!-- Populated via JavaScript -->
                         </tbody>
                     </table>
@@ -871,32 +791,32 @@
 
         <!-- 6. METHODOLOGY & LAB REPORT JUSTIFICATION -->
         <section id="methodology" class="space-y-4 scroll-mt-20">
-            <div class="border-b border-slate-700 pb-3">
-                <div class="flex items-center gap-2 text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
                     <i class="fa-solid fa-graduation-cap"></i> Academic Documentation
                 </div>
-                <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
                     Methodology & Project Justifications
                 </h2>
-                <p class="text-xs text-slate-400 mt-0.5">Comprehensive documentation fulfilling all project report evaluation rubrics.</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Comprehensive documentation fulfilling all project report evaluation rubrics.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div class="pro-card p-5 space-y-2 border-t-2 border-t-blue-500">
-                    <span class="text-xs font-bold text-blue-400 uppercase tracking-wider block font-mono">1. Data Preprocessing & Cleaning</span>
-                    <p class="text-xs text-slate-300 leading-relaxed">
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2 border-t-4 border-t-blue-500">
+                    <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block font-mono">1. Data Preprocessing & Cleaning</span>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                         Continuous features (experience, AI tools) were imputed with median values to protect against skewness. Categoricals were encoded with Target Encoding (high-cardinality roles) and One-Hot Encoding to preserve multi-dimensional relationships.
                     </p>
                 </div>
-                <div class="pro-card p-5 space-y-2 border-t-2 border-t-emerald-500">
-                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block font-mono">2. Model Selection Rationale</span>
-                    <p class="text-xs text-slate-300 leading-relaxed">
-                        Random Forest achieved <strong class="text-white">R² = 0.744</strong>, cutting MAE by 42.6% over linear OLS. Tech compensation exhibits non-linear promotion steps (Senior → Lead jumps) which decision tree ensembles model natively.
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2 border-t-4 border-t-emerald-500">
+                    <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block font-mono">2. Model Selection Rationale</span>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Random Forest achieved <strong class="text-slate-900 dark:text-white">R² = 0.744</strong>, cutting MAE by 42.6% over linear OLS. Tech compensation exhibits non-linear promotion steps (Senior → Lead jumps) which decision tree ensembles model natively.
                     </p>
                 </div>
-                <div class="pro-card p-5 space-y-2 border-t-2 border-t-slate-500">
-                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider block font-mono">3. Empirical Key Findings</span>
-                    <p class="text-xs text-slate-300 leading-relaxed">
+                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2 border-t-4 border-t-indigo-500">
+                    <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block font-mono">3. Empirical Key Findings</span>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                         Feature importances identify <strong>Seniority Level</strong> (34.2%), <strong>Experience</strong> (26.8%), and <strong>Location</strong> (18.4%) as primary drivers. Weekly GenAI tool adoption also confirmed an emergent productivity wage premium.
                     </p>
                 </div>
@@ -906,10 +826,10 @@
     </main>
 
     <!-- Professional Footer -->
-    <footer class="border-t border-slate-800 bg-[var(--bg-body)] mt-20 py-10 text-center text-xs text-slate-500 font-mono">
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 mt-20 py-10 text-center text-xs text-slate-500 font-mono">
         <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <p class="text-slate-400 font-semibold">SalaryScope AI 2026 • Machine Learning Lab Report Single-Page Platform</p>
-            <p>Built with Pure Vanilla JavaScript, Tailwind CSS, and Chart.js.</p>
+            <p class="text-slate-700 dark:text-slate-400 font-semibold">SalaryScope AI 2026 • Machine Learning Lab Report Single-Page Platform</p>
+            <p class="text-slate-500">Built with Pure Vanilla JavaScript, Tailwind CSS, and Chart.js.</p>
         </div>
     </footer>
 
@@ -954,20 +874,74 @@
             'L': 1.10, 'M': 1.00, 'S': 0.88
         };
 
-        // Dark / Light Theme Toggle
-        let currentTheme = 'dark';
-        function toggleTheme() {
-            const icon = document.getElementById('themeIcon');
-            if (currentTheme === 'dark') {
-                document.body.classList.add('theme-light');
-                currentTheme = 'light';
-                icon.className = 'fa-solid fa-sun text-amber-500';
+        // Robust Dark/Light Toggle with Chart Synchronization
+        let chartInstance1 = null;
+        let chartInstance2 = null;
+
+        function setTheme(mode) {
+            const html = document.documentElement;
+            const btnLight = document.getElementById('themeLightBtn');
+            const btnDark = document.getElementById('themeDarkBtn');
+            const isDark = (mode === 'dark');
+
+            if (isDark) {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                document.body.className = 'min-h-screen bg-slate-950 text-slate-100 transition-colors duration-200';
+                localStorage.setItem('salaryscope_theme_mode', 'dark');
+
+                if (btnDark) btnDark.className = 'flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-blue-600 text-white shadow-sm';
+                if (btnLight) btnLight.className = 'flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white';
             } else {
-                document.body.classList.remove('theme-light');
-                currentTheme = 'dark';
-                icon.className = 'fa-solid fa-moon';
+                html.classList.remove('dark');
+                html.classList.add('light');
+                document.body.className = 'min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200';
+                localStorage.setItem('salaryscope_theme_mode', 'light');
+
+                if (btnLight) btnLight.className = 'flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer bg-white text-slate-900 shadow-sm border border-slate-200/80';
+                if (btnDark) btnDark.className = 'flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white';
             }
-            localStorage.setItem('salaryscope_pro_theme', currentTheme);
+
+            updateChartsColor(isDark);
+            calculateSalary();
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            setTheme(isDark ? 'light' : 'dark');
+        }
+
+        function applySavedTheme() {
+            const saved = localStorage.getItem('salaryscope_theme_mode');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const mode = saved ? saved : (prefersDark ? 'dark' : 'light');
+            setTheme(mode);
+        }
+
+        // Keyboard Shortcut: press 'T' to toggle theme smoothly
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 't' || e.key === 'T') && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+                toggleTheme();
+            }
+        });
+
+        function updateChartsColor(isDarkNow) {
+            const tickColor = isDarkNow ? '#94A3B8' : '#475569';
+            const gridColor = isDarkNow ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)';
+
+            if (chartInstance1) {
+                chartInstance1.options.scales.x.ticks.color = tickColor;
+                chartInstance1.options.scales.y.ticks.color = tickColor;
+                chartInstance1.options.scales.y.grid.color = gridColor;
+                chartInstance1.update();
+            }
+
+            if (chartInstance2) {
+                chartInstance2.options.scales.x.ticks.color = tickColor;
+                chartInstance2.options.scales.y.ticks.color = tickColor;
+                chartInstance2.options.scales.y.grid.color = gridColor;
+                chartInstance2.update();
+            }
         }
 
         function calculateSalary() {
@@ -1044,10 +1018,15 @@
             ['Entry', 'Mid', 'Senior', 'Lead', 'Executive'].forEach(tier => {
                 const el = document.getElementById('ladder_' + tier);
                 if (el) {
+                    const isDark = document.documentElement.classList.contains('dark');
                     if (tier === expLevel) {
-                        el.className = 'py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/60 text-emerald-300 transition-all font-semibold shadow-sm';
+                        el.className = isDark 
+                            ? 'py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/60 text-emerald-300 font-semibold transition-all shadow-xs'
+                            : 'py-1.5 rounded-lg bg-emerald-100 border border-emerald-500 text-emerald-800 font-semibold transition-all shadow-xs';
                     } else {
-                        el.className = 'py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 transition-all';
+                        el.className = isDark
+                            ? 'py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 transition-all'
+                            : 'py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-500 transition-all';
                     }
                 }
             });
@@ -1097,7 +1076,7 @@
 Generated via SalaryScope Enterprise Platform`;
 
             navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('proToast');
+                const toast = document.getElementById('themeToast');
                 toast.classList.add('show');
                 setTimeout(() => toast.classList.remove('show'), 3000);
             }).catch(() => alert('Assessment copied!'));
@@ -1200,15 +1179,15 @@ Generated via SalaryScope Enterprise Platform`;
             tbody.innerHTML = '';
             data.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.className = 'hover:bg-slate-800/40 transition-colors font-mono';
+                tr.className = 'hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors font-mono';
                 tr.innerHTML = `
-                    <td class="py-3 px-4 font-sans font-medium text-white">${item.job_title}</td>
-                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-300">${item.experience_level}</span></td>
-                    <td class="py-3 px-3 text-blue-400">${item.company_location}</td>
+                    <td class="py-3 px-4 font-sans font-medium text-slate-900 dark:text-white">${item.job_title}</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">${item.experience_level}</span></td>
+                    <td class="py-3 px-3 text-blue-600 dark:text-blue-400">${item.company_location}</td>
                     <td class="py-3 px-3">${item.years_experience ? item.years_experience.toFixed(1) : '0.0'} yrs</td>
-                    <td class="py-3 px-3 font-sans text-slate-400">${item.education_level}</td>
-                    <td class="py-3 px-3 text-slate-300">${item.ai_tools_hours_per_week ? item.ai_tools_hours_per_week.toFixed(1) : '0.0'}</td>
-                    <td class="py-3 px-4 text-right font-bold text-emerald-400">$${item.salary_usd ? item.salary_usd.toLocaleString() : 'N/A'}</td>
+                    <td class="py-3 px-3 font-sans text-slate-600 dark:text-slate-400">${item.education_level}</td>
+                    <td class="py-3 px-3 text-slate-600 dark:text-slate-300">${item.ai_tools_hours_per_week ? item.ai_tools_hours_per_week.toFixed(1) : '0.0'}</td>
+                    <td class="py-3 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">$${item.salary_usd ? item.salary_usd.toLocaleString() : 'N/A'}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -1226,8 +1205,12 @@ Generated via SalaryScope Enterprise Platform`;
         }
 
         function initCharts() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const tickColor = isDark ? '#94A3B8' : '#475569';
+            const gridColor = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)';
+
             // Chart 1: Model Accuracy R2
-            new Chart(document.getElementById('chartAccuracy'), {
+            chartInstance1 = new Chart(document.getElementById('chartAccuracy'), {
                 type: 'bar',
                 data: {
                     labels: ['Random Forest (Champion)', 'Linear Regression (OLS)', 'KNN (k=5)'],
@@ -1246,19 +1229,19 @@ Generated via SalaryScope Enterprise Platform`;
                         y: {
                             beginAtZero: true,
                             max: 1.0,
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                            ticks: { color: '#94A3B8' }
+                            grid: { color: gridColor },
+                            ticks: { color: tickColor }
                         },
                         x: {
                             grid: { display: false },
-                            ticks: { color: '#94A3B8', font: { size: 11 } }
+                            ticks: { color: tickColor, font: { size: 11 } }
                         }
                     }
                 }
             });
 
             // Chart 2: Seniority Progression
-            new Chart(document.getElementById('chartSeniority'), {
+            chartInstance2 = new Chart(document.getElementById('chartSeniority'), {
                 type: 'line',
                 data: {
                     labels: ['Entry', 'Mid', 'Senior', 'Lead', 'Executive'],
@@ -1280,15 +1263,15 @@ Generated via SalaryScope Enterprise Platform`;
                     plugins: { legend: { display: false } },
                     scales: {
                         y: {
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            grid: { color: gridColor },
                             ticks: {
-                                color: '#94A3B8',
+                                color: tickColor,
                                 callback: function(val) { return '$' + (val / 1000) + 'k'; }
                             }
                         },
                         x: {
                             grid: { display: false },
-                            ticks: { color: '#94A3B8' }
+                            ticks: { color: tickColor }
                         }
                     }
                 }
@@ -1296,8 +1279,7 @@ Generated via SalaryScope Enterprise Platform`;
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('salaryscope_pro_theme');
-            if (savedTheme === 'light') toggleTheme();
+            applySavedTheme();
             initCharts();
             calculateSalary();
         });
