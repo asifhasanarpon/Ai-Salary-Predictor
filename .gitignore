@@ -1,0 +1,9 @@
+# Python build & generator scripts
+build_*.py
+verify_*.py
+__pycache__/
+*.pyc
+
+# OS files
+Thumbs.db
+.DS_Store

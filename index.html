@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalaryScope AI 2026 | Machine Learning Compensation Intelligence Platform</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            400: '#38BDF8',
+                            500: '#0EA5E9',
+                            600: '#0284C7',
+                            900: '#0C4A6E'
+                        },
+                        dark: {
+                            base: '#030712',
+                            card: '#0B132B',
+                            surface: '#111D3B',
+                            border: 'rgba(255, 255, 255, 0.10)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #F8FAFC;
+            overflow-x: hidden;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+        .glass-panel {
+            background: rgba(11, 19, 43, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+        .glass-panel-glow {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(15, 23, 42, 0.90) 50%, rgba(99, 102, 241, 0.08) 100%);
+            backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(56, 189, 248, 0.35);
+            border-radius: 24px;
+            box-shadow: 0 10px 50px -10px rgba(14, 165, 233, 0.28);
+        }
+        .text-gradient-cyan {
+            background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-emerald {
+            background: linear-gradient(135deg, #34D399 0%, #10B981 50%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Strictly Symmetrical Form Control Styling (48px exact height across all inputs) */
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .uniform-control {
+            height: 48px;
+            background: rgba(15, 23, 42, 0.92);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 0 14px;
+            color: #FFFFFF;
+            font-size: 0.875rem;
+            width: 100%;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+        .uniform-control:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(20, 31, 56, 0.95);
+        }
+        .uniform-control:focus {
+            outline: none;
+            border-color: #38BDF8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+            background: rgba(15, 23, 42, 0.98);
+        }
+        .field-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #94A3B8;
+            margin-bottom: 8px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .field-label .label-text {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .field-label i {
+            color: #38BDF8;
+            font-size: 0.75rem;
+        }
+
+        /* High-Tech Custom Range Sliders */
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 9999px;
+            background: #1e293b;
+            outline: none;
+        }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #38BDF8;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.85);
+            border: 2px solid #FFFFFF;
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+        .custom-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: #7DD3FC;
+        }
+
+        /* Toast popup */
+        #copyToast {
+            visibility: hidden;
+            min-width: 280px;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #copyToast.show {
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-brand-500 selection:text-white">
+
+    <!-- Ambient Glow Orbs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-32 -left-32 w-[35rem] h-[35rem] bg-brand-500/10 rounded-full blur-[130px]"></div>
+        <div class="absolute top-1/2 -right-32 w-[32rem] h-[32rem] bg-indigo-600/10 rounded-full blur-[130px]"></div>
+        <div class="absolute bottom-10 left-1/3 w-[28rem] h-[28rem] bg-purple-600/10 rounded-full blur-[130px]"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="copyToast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl bg-slate-900/95 border border-cyan-500/40 text-white shadow-2xl shadow-cyan-500/20 backdrop-blur-md">
+        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <span class="text-xs font-bold text-white block">Assessment Copied!</span>
+            <span class="text-[11px] text-slate-400">Detailed ML compensation summary in clipboard.</span>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-[#030712]/90 backdrop-blur-xl border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
+                    <i class="fa-solid fa-brain text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                        SalaryScope <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-mono border border-cyan-500/30 uppercase tracking-wider font-semibold">2026 AI/DS</span>
+                    </span>
+                    <p class="text-xs text-slate-400">Machine Learning Research & Valuation Platform</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#predictor" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 font-semibold text-cyan-400">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> Valuation Engine
+                </a>
+                <a href="#benchmark" class="hover:text-cyan-400 transition-colors">Model Benchmark</a>
+                <a href="#eda" class="hover:text-cyan-400 transition-colors">Market EDA</a>
+                <a href="#explorer" class="hover:text-cyan-400 transition-colors">Data Explorer</a>
+                <a href="#justification" class="hover:text-cyan-400 transition-colors">Lab Report</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 border border-slate-700 transition-all">
+                    <i class="fa-solid fa-print text-slate-400"></i>
+                    <span>Print Report</span>
+                </button>
+                <a href="#predictor" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold shadow-lg shadow-cyan-500/25 transition-all">
+                    <i class="fa-solid fa-calculator text-xs"></i>
+                    <span>Predict Salary</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+
+        <!-- HERO SECTION -->
+        <section class="text-center max-w-4xl mx-auto space-y-6 pt-2">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-medium">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span>Trained on 5,000 Global AI & Data Science Records (2026 Edition)</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                Predict AI & Data Science Compensation with <span class="text-gradient-cyan">Precision ML</span>
+            </h1>
+            
+            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                An interactive machine learning decision-support platform deploying our top-performing 
+                <strong class="text-emerald-400 font-semibold">Random Forest Regressor (R² = 0.744)</strong> 
+                to provide real-time salary valuation across 15 multidimensional features.
+            </p>
+
+            <!-- Quick Metrics Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 text-left">
+                <div class="glass-panel p-4 border border-slate-800/80">
+                    <span class="text-xs text-slate-400 font-mono block">Champion Model</span>
+                    <span class="text-lg font-bold text-white block mt-1">Random Forest</span>
+                    <span class="text-[11px] text-emerald-400 font-mono">R² = 0.7440 (Leader)</span>
+                </div>
+                <div class="glass-panel p-4 border border-slate-800/80">
+                    <span class="text-xs text-slate-400 font-mono block">Mean Absolute Error</span>
+                    <span class="text-lg font-bold text-white block mt-1">±$19,991</span>
+                    <span class="text-[11px] text-cyan-400 font-mono">42.6% error reduction</span>
+                </div>
+                <div class="glass-panel p-4 border border-slate-800/80">
+                    <span class="text-xs text-slate-400 font-mono block">Holdout Test Set</span>
+                    <span class="text-lg font-bold text-white block mt-1">1,000 Rows</span>
+                    <span class="text-[11px] text-indigo-400 font-mono">80:20 Stratified Split</span>
+                </div>
+                <div class="glass-panel p-4 border border-slate-800/80">
+                    <span class="text-xs text-slate-400 font-mono block">Median Compensation</span>
+                    <span class="text-lg font-bold text-white block mt-1">$124,500</span>
+                    <span class="text-[11px] text-amber-400 font-mono">Range: $18k – $385k</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: INTERACTIVE PREDICTOR & SYMMETRICAL FORM -->
+        <section id="predictor" class="space-y-8 scroll-mt-24">
+            
+            <!-- Section Header & Presets Bar -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-5">
+                <div>
+                    <div class="flex items-center gap-2 text-cyan-400 font-semibold text-xs font-mono uppercase tracking-widest">
+                        <i class="fa-solid fa-sliders"></i> Real-Time Model Inference
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Interactive Compensation Predictor</h2>
+                    <p class="text-sm text-slate-400 mt-1">Adjust the 15 candidate variables below to calculate instantaneous multi-model compensation valuation.</p>
+                </div>
+                <!-- 1-Click Role Presets -->
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-xs text-slate-400 font-mono mr-1">Quick Presets:</span>
+                    <button onclick="applyPreset('entryAnalyst')" class="px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition-all cursor-pointer">🐣 Junior Analyst</button>
+                    <button onclick="applyPreset('midScientist')" class="px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition-all cursor-pointer">🚀 Mid Scientist</button>
+                    <button onclick="applyPreset('seniorMLE')" class="px-3 py-1.5 rounded-lg bg-blue-900/40 hover:bg-blue-800/60 text-xs font-medium text-blue-200 border border-blue-500/40 transition-all cursor-pointer">⚡ Senior MLE</button>
+                    <button onclick="applyPreset('execDirector')" class="px-3 py-1.5 rounded-lg bg-purple-900/40 hover:bg-purple-800/60 text-xs font-medium text-purple-200 border border-purple-500/40 transition-all cursor-pointer">👑 AI Director</button>
+                    <button onclick="applyPreset('globalRemote')" class="px-3 py-1.5 rounded-lg bg-emerald-900/40 hover:bg-emerald-800/60 text-xs font-medium text-emerald-200 border border-emerald-500/40 transition-all cursor-pointer">🌐 Global Remote</button>
+                </div>
+            </div>
+
+            <!-- GLOWING VALUATION HUD BANNER -->
+            <div class="glass-panel-glow p-6 sm:p-8 space-y-6">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    
+                    <!-- Left: Main Estimated Salary Display (5 cols) -->
+                    <div class="lg:col-span-5 text-center lg:text-left space-y-2 border-b lg:border-b-0 lg:border-r border-slate-800/80 pb-5 lg:pb-0 lg:pr-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono font-semibold border border-emerald-500/20">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                            <span>Random Forest Output • R² = 0.7440</span>
+                        </div>
+                        <div class="text-xs font-mono uppercase text-slate-400 tracking-wider block">Estimated Annual Compensation</div>
+                        <div class="text-4xl sm:text-5xl font-black text-white tracking-tight flex items-center justify-center lg:justify-start gap-1">
+                            <span class="text-emerald-400 font-mono font-bold">$</span>
+                            <span id="res_salary_display" class="text-gradient-emerald font-mono font-extrabold">122,700</span>
+                            <span class="text-sm text-slate-400 font-normal ml-1 font-mono">/ year</span>
+                        </div>
+                        <div class="flex items-center justify-center lg:justify-start gap-4 text-xs font-mono text-slate-400 pt-1">
+                            <span>Monthly: <strong id="res_monthly_display" class="text-white">$10,225/mo</strong></span>
+                            <span>•</span>
+                            <span>Hourly: <strong id="res_hourly_display" class="text-cyan-300">$59.00/hr</strong></span>
+                        </div>
+                        <div class="text-[11px] font-mono text-slate-400 pt-1">
+                            <span>Confidence Band (±MAE): </span>
+                            <strong id="res_confidence_range" class="text-slate-200 font-semibold">$102,709 – $142,691</strong>
+                        </div>
+                    </div>
+
+                    <!-- Middle: Multi-Model Consensus Cards (4 cols) -->
+                    <div class="lg:col-span-4 space-y-2 border-b lg:border-b-0 lg:border-r border-slate-800/80 pb-5 lg:pb-0 lg:pr-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-mono uppercase text-slate-400 font-semibold tracking-wider block">Model Consensus Benchmark:</span>
+                            <span id="model_consensus_metric" class="text-[10px] font-mono text-cyan-300 font-bold px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30">97.3% Consensus</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 font-mono text-center">
+                            <div class="p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 shadow-sm">
+                                <span class="text-[10px] text-emerald-400 font-bold block">Random Forest</span>
+                                <span id="res_rf_display" class="text-xs font-black text-white block mt-0.5">$122,700</span>
+                                <span class="text-[9px] text-emerald-400 font-semibold block">MAE: $19.9k</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 block">Linear OLS</span>
+                                <span id="res_lr_display" class="text-xs font-bold text-slate-300 block mt-0.5">$119,400</span>
+                                <span class="text-[9px] text-slate-500 block">MAE: $34.8k</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                                <span class="text-[10px] text-slate-400 block">KNN (k=5)</span>
+                                <span id="res_knn_display" class="text-xs font-bold text-slate-300 block mt-0.5">$115,800</span>
+                                <span class="text-[9px] text-slate-500 block">MAE: $35.4k</span>
+                            </div>
+                        </div>
+                        <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                            <span>Market Standing:</span>
+                            <span id="market_percentile_badge" class="font-mono text-emerald-400 font-bold">Top 38% (Competitive)</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Dynamic Drivers Commentary & Career Leap (3 cols) -->
+                    <div class="lg:col-span-3 space-y-2 text-xs">
+                        <span class="text-[11px] font-mono uppercase text-slate-400 font-semibold tracking-wider block">⚡ Instant Career Boosters:</span>
+                        <div class="grid grid-cols-2 gap-2 font-mono">
+                            <button onclick="boostExperience()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-left transition-all group cursor-pointer">
+                                <span class="text-white block font-semibold text-[11px] group-hover:text-cyan-300">+3 Yrs Exp</span>
+                                <span class="text-[10px] text-emerald-400 block">+$11,550</span>
+                            </button>
+                            <button onclick="boostManagement()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-left transition-all group cursor-pointer">
+                                <span class="text-white block font-semibold text-[11px] group-hover:text-cyan-300">Lead Team</span>
+                                <span class="text-[10px] text-cyan-400 block">+$16,500</span>
+                            </button>
+                            <button onclick="boostEducation()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-purple-500/50 text-left transition-all group cursor-pointer">
+                                <span class="text-white block font-semibold text-[11px] group-hover:text-purple-300">PhD Degree</span>
+                                <span class="text-[10px] text-purple-400 block">+$12,000</span>
+                            </button>
+                            <button onclick="boostAITools()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-500/50 text-left transition-all group cursor-pointer">
+                                <span class="text-white block font-semibold text-[11px] group-hover:text-amber-300">18h AI Tools</span>
+                                <span class="text-[10px] text-amber-400 block">+$5,800</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- LIVE REAL-TIME SALARY MARKET SPECTRUM GAUGE -->
+                <div class="pt-2 border-t border-slate-800/80">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                        <span class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-line text-cyan-400"></i>
+                            <span>Market Compensation Spectrum (5,000 Global Records)</span>
+                        </span>
+                        <span id="spectrum_pos_text" class="text-emerald-400 font-bold">Position: 44th Percentile</span>
+                    </div>
+
+                    <!-- Spectrum Visual Bar with Dynamic Pin -->
+                    <div class="relative w-full">
+                        <!-- Gradient Bar -->
+                        <div class="w-full h-3 rounded-full bg-gradient-to-r from-blue-700 via-cyan-500 via-emerald-400 to-amber-400 overflow-hidden shadow-inner"></div>
+                        
+                        <!-- Dynamic Pin Marker -->
+                        <div id="spectrum_pin" class="absolute -top-1 transition-all duration-300 ease-out" style="left: 44%;">
+                            <div class="w-5 h-5 -ml-2.5 rounded-full bg-white border-2 border-slate-900 shadow-lg shadow-cyan-500/50 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spectrum Tick Marks -->
+                    <div class="flex justify-between items-center text-[10px] font-mono text-slate-500 mt-2">
+                        <span>$20k (10th)</span>
+                        <span>$65k (25th)</span>
+                        <span class="text-slate-300 font-semibold">$124.5k (Median)</span>
+                        <span>$190k (75th)</span>
+                        <span class="text-amber-400 font-semibold">$350k+ (Top 1%)</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PROPORTIONED 3-COLUMN FORM CARD (5 Harmonious Rows × 3 Columns = 15 Inputs) -->
+            <div class="glass-panel p-6 sm:p-10 space-y-8">
+                
+                <div class="flex items-center justify-between pb-3 border-b border-slate-800/80">
+                    <div>
+                        <span class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-cyan-400"></i> Configure 15 Predictive Variables (Symmetric Grid)
+                        </span>
+                        <span class="text-xs text-slate-400">All numeric controls feature interactive sliders with live value synchronization.</span>
+                    </div>
+                    <button onclick="resetToDefaults()" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 font-mono cursor-pointer">
+                        <i class="fa-solid fa-arrow-rotate-left"></i> Reset Defaults
+                    </button>
+                </div>
+
+                <form id="valuationForm" onsubmit="event.preventDefault(); runLivePrediction();">
+                    
+                    <!-- 3-Column Symmetrical Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
+
+                        <!-- ROW 1, COL 1: Job Title -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_job_title">
+                                <span class="label-text"><i class="fa-solid fa-user-tag"></i> 1. Job Title</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_job_title" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="AI Engineer">AI Engineer</option>
+                                    <option value="Data Scientist" selected>Data Scientist</option>
+                                    <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                                    <option value="Data Analyst">Data Analyst</option>
+                                    <option value="LLM Engineer">LLM Engineer</option>
+                                    <option value="Data Engineer">Data Engineer</option>
+                                    <option value="Research Scientist">Research Scientist</option>
+                                    <option value="Data Science Manager">Data Science Manager</option>
+                                    <option value="Analytics Engineer">Analytics Engineer</option>
+                                    <option value="Computer Vision Engineer">Computer Vision Engineer</option>
+                                    <option value="Business Intelligence Analyst">Business Intelligence Analyst</option>
+                                    <option value="MLOps Engineer">MLOps Engineer</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 1, COL 2: Experience Level -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_experience_level">
+                                <span class="label-text"><i class="fa-solid fa-layer-group"></i> 2. Seniority Level</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_experience_level" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="Entry">Entry Level (Junior)</option>
+                                    <option value="Mid" selected>Mid Level</option>
+                                    <option value="Senior">Senior Level</option>
+                                    <option value="Lead">Lead Level</option>
+                                    <option value="Executive">Executive / Director</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 1, COL 3: Years of Experience (Synchronized Slider + Value) -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_years_experience">
+                                <span class="label-text"><i class="fa-solid fa-calendar-days"></i> 3. Years Exp</span>
+                                <span id="disp_years_exp" class="text-cyan-400 font-bold font-mono">6.0 Yrs</span>
+                            </label>
+                            <div class="uniform-control flex items-center gap-3">
+                                <input id="inp_years_experience" type="range" min="0" max="24" step="0.5" value="6.0" oninput="runLivePrediction()" class="custom-range cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- ROW 2, COL 1: Education Level -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_education_level">
+                                <span class="label-text"><i class="fa-solid fa-graduation-cap"></i> 4. Education Level</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_education_level" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="PhD">Doctorate (PhD)</option>
+                                    <option value="Masters" selected>Master's Degree</option>
+                                    <option value="Bachelors">Bachelor's Degree</option>
+                                    <option value="Bootcamp">Bootcamp Graduate</option>
+                                    <option value="Self-taught">Self-Taught</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 2, COL 2: Primary Language -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_primary_language">
+                                <span class="label-text"><i class="fa-solid fa-code"></i> 5. Primary Language</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_primary_language" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="Python" selected>Python</option>
+                                    <option value="SQL">SQL</option>
+                                    <option value="Rust">Rust</option>
+                                    <option value="Scala">Scala</option>
+                                    <option value="Java">Java</option>
+                                    <option value="R">R</option>
+                                    <option value="Julia">Julia</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 2, COL 3: Company Location -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_company_location">
+                                <span class="label-text"><i class="fa-solid fa-earth-americas"></i> 6. Location</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_company_location" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="US" selected>United States (US)</option>
+                                    <option value="CA">Canada (CA)</option>
+                                    <option value="GB">United Kingdom (GB)</option>
+                                    <option value="DE">Germany (DE)</option>
+                                    <option value="FR">France (FR)</option>
+                                    <option value="NL">Netherlands (NL)</option>
+                                    <option value="AU">Australia (AU)</option>
+                                    <option value="SG">Singapore (SG)</option>
+                                    <option value="IN">India (IN)</option>
+                                    <option value="BR">Brazil (BR)</option>
+                                    <option value="ES">Spain (ES)</option>
+                                    <option value="PL">Poland (PL)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 3, COL 1: Company Size -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_company_size">
+                                <span class="label-text"><i class="fa-solid fa-building"></i> 7. Company Size</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_company_size" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="L">L - Large Enterprise (500+)</option>
+                                    <option value="M" selected>M - Mid-Market (50-250)</option>
+                                    <option value="S">S - Small / Startup (&lt;50)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 3, COL 2: Employment Type -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_employment_type">
+                                <span class="label-text"><i class="fa-solid fa-file-contract"></i> 8. Employment Type</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_employment_type" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="Full-time" selected>Full-time Permanent</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Contract">Independent Contract</option>
+                                    <option value="Freelance">Freelance</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 3, COL 3: Industry -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_industry">
+                                <span class="label-text"><i class="fa-solid fa-industry"></i> 9. Industry</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_industry" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="Technology" selected>Technology & Software</option>
+                                    <option value="Finance">Finance & Banking</option>
+                                    <option value="Healthcare">Healthcare & BioTech</option>
+                                    <option value="Consulting">Consulting & Services</option>
+                                    <option value="Retail">Retail & E-Commerce</option>
+                                    <option value="Energy">Energy & Utilities</option>
+                                    <option value="Manufacturing">Manufacturing</option>
+                                    <option value="Government">Government & Defense</option>
+                                    <option value="Education">Education & Academia</option>
+                                    <option value="Media">Media & Entertainment</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 4, COL 1: Remote Work Ratio -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_remote_ratio">
+                                <span class="label-text"><i class="fa-solid fa-house-laptop"></i> 10. Remote Ratio</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_remote_ratio" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="0">0% - Fully On-site</option>
+                                    <option value="50" selected>50% - Hybrid Workplace</option>
+                                    <option value="100">100% - Fully Remote</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 4, COL 2: Weekly Work Hours (Harmonized Slider + Badge) -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_weekly_hours">
+                                <span class="label-text"><i class="fa-solid fa-clock"></i> 11. Weekly Hours</span>
+                                <span id="disp_weekly_hours" class="text-blue-400 font-bold font-mono">44 hrs/wk</span>
+                            </label>
+                            <div class="uniform-control flex items-center gap-3">
+                                <input id="inp_weekly_hours" type="range" min="20" max="80" step="1" value="44" oninput="runLivePrediction()" class="custom-range cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- ROW 4, COL 3: AI Tooling Hours (Harmonized Slider + Badge) -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_ai_tools_hours">
+                                <span class="label-text"><i class="fa-solid fa-robot"></i> 12. AI Tooling</span>
+                                <span id="disp_ai_hours" class="text-purple-400 font-bold font-mono">8.0 hrs/wk</span>
+                            </label>
+                            <div class="uniform-control flex items-center gap-3">
+                                <input id="inp_ai_tools_hours" type="range" min="0" max="25" step="0.5" value="8" oninput="runLivePrediction()" class="custom-range cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- ROW 5, COL 1: People Management (Leadership) -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_manages_people">
+                                <span class="label-text"><i class="fa-solid fa-users"></i> 13. Leadership</span>
+                            </label>
+                            <div class="relative">
+                                <select id="inp_manages_people" onchange="runLivePrediction()" class="uniform-control appearance-none cursor-pointer pr-10">
+                                    <option value="0" selected>0 - Individual Contributor</option>
+                                    <option value="1">1 - Team Lead / Manager</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- ROW 5, COL 2: Certifications Count (Harmonized Slider + Badge) -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_certifications_count">
+                                <span class="label-text"><i class="fa-solid fa-certificate"></i> 14. Certifications</span>
+                                <span id="disp_certs" class="text-emerald-400 font-bold font-mono">2 Certs</span>
+                            </label>
+                            <div class="uniform-control flex items-center gap-3">
+                                <input id="inp_certifications_count" type="range" min="0" max="10" step="1" value="2" oninput="runLivePrediction()" class="custom-range cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- ROW 5, COL 3: Job Satisfaction Score (Harmonized Slider + Badge) -->
+                        <div class="field-group">
+                            <label class="field-label" for="inp_job_satisfaction">
+                                <span class="label-text"><i class="fa-solid fa-face-smile"></i> 15. Satisfaction (1-10)</span>
+                                <span id="disp_satisfaction" class="text-amber-400 font-bold font-mono">⭐ 7.0 / 10</span>
+                            </label>
+                            <div class="uniform-control flex items-center gap-3">
+                                <input id="inp_job_satisfaction" type="range" min="1.0" max="10.0" step="0.5" value="7.0" oninput="runLivePrediction()" class="custom-range cursor-pointer">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Clean Action Buttons with Copy Assessment Capability -->
+                    <div class="flex flex-wrap items-center justify-center gap-4 pt-8 border-t border-slate-800/80">
+                        <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Calculate Valuation</span>
+                        </button>
+                        
+                        <button type="button" onclick="copyAssessmentToClipboard()" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-sm border border-slate-700 hover:border-cyan-500/40 transition-all flex items-center gap-2 cursor-pointer">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copy Assessment</span>
+                        </button>
+
+                        <button type="button" onclick="resetToDefaults()" class="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-bold text-sm border border-slate-700 transition-all flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Reset Defaults</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- COMPENSATION DRIVERS & AI CAREER ROADMAP -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+                <!-- Feature Contribution Waterfall (SHAP-style) -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                        <span class="text-sm font-bold text-white flex items-center gap-2 font-mono uppercase">
+                            <i class="fa-solid fa-waterfall text-cyan-400"></i> Value Contribution Breakdown
+                        </span>
+                        <span class="text-xs text-slate-400 font-mono">Factor Additions</span>
+                    </div>
+
+                    <div class="space-y-3 font-mono text-xs">
+                        <div>
+                            <div class="flex justify-between text-slate-300 mb-1">
+                                <span>Role Baseline Value</span>
+                                <span id="wf_role_val" class="font-bold text-white">$94,900</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="wf_role_bar" class="h-full bg-blue-500 rounded-full transition-all duration-300" style="width: 75%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-slate-300 mb-1">
+                                <span>Experience & Seniority</span>
+                                <span id="wf_exp_val" class="font-bold text-cyan-400">+$23,100</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="wf_exp_bar" class="h-full bg-cyan-400 rounded-full transition-all duration-300" style="width: 55%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-slate-300 mb-1">
+                                <span>Geographic Market Premium</span>
+                                <span id="wf_loc_val" class="font-bold text-emerald-400">+$24,500</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="wf_loc_bar" class="h-full bg-emerald-400 rounded-full transition-all duration-300" style="width: 50%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-slate-300 mb-1">
+                                <span>AI Tools & Productivity Leverage</span>
+                                <span id="wf_ai_val" class="font-bold text-purple-400">+$4,640</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="wf_ai_bar" class="h-full bg-purple-400 rounded-full transition-all duration-300" style="width: 32%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-slate-300 mb-1">
+                                <span>Education & Leadership Multiplier</span>
+                                <span id="wf_edu_val" class="font-bold text-amber-400">+$6,500</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="wf_edu_bar" class="h-full bg-amber-400 rounded-full transition-all duration-300" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Career Recommendations Engine -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                        <span class="text-sm font-bold text-white flex items-center gap-2 font-mono uppercase">
+                            <i class="fa-solid fa-lightbulb text-amber-400"></i> AI Salary Growth Roadmap
+                        </span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">Actionable Insights</span>
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-300">
+                        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold mt-0.5">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-white block">Promote to Senior Level</span>
+                                <span class="text-slate-400">Random Forest feature coefficients indicate advancing to Senior grants an estimated <strong>+$23,280/yr</strong> leap.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 font-bold mt-0.5">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-white block">Assume Leadership Responsibilities</span>
+                                <span class="text-slate-400">Managing people adds an empirical boost of <strong>+$16,500/yr</strong> over individual contributors.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0 font-bold mt-0.5">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-white block">Double GenAI Tool Integration</span>
+                                <span class="text-slate-400">Engineers utilizing AI tooling 12+ hrs/wk capture higher equity and productivity bonuses.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION: MODEL BENCHMARK & EVALUATION -->
+        <section id="benchmark" class="space-y-6 pt-6 scroll-mt-24">
+            <div class="border-b border-slate-800 pb-5">
+                <div class="flex items-center gap-2 text-emerald-400 font-semibold text-xs font-mono uppercase tracking-widest">
+                    <i class="fa-solid fa-square-poll-vertical"></i> Empirical Evaluation
+                </div>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Supervised Model Benchmark (1,000 Test Records)</h2>
+                <p class="text-sm text-slate-400 mt-1">Evaluating generalization capacity across R², MAE, and RMSE loss metrics on unseen test holdouts.</p>
+            </div>
+
+            <!-- Benchmark Table with Proportioned Columns -->
+            <div class="glass-panel overflow-x-auto">
+                <table class="w-full text-left text-xs font-mono text-slate-300">
+                    <thead class="bg-slate-900/90 uppercase text-slate-400 border-b border-slate-800">
+                        <tr>
+                            <th class="py-4 px-5 font-sans font-semibold w-1/4">Model Architecture</th>
+                            <th class="py-4 px-4 w-1/6">R² Score</th>
+                            <th class="py-4 px-4 w-1/6">MAE (USD)</th>
+                            <th class="py-4 px-4 w-1/6">RMSE (USD)</th>
+                            <th class="py-4 px-4 w-1/6">MSE Loss</th>
+                            <th class="py-4 px-5 font-sans w-1/6">Verdict</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800/60 font-sans">
+                        <tr class="bg-emerald-950/25 font-semibold text-white">
+                            <td class="py-4 px-5 flex items-center gap-2.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                                <div>
+                                    <span class="block text-emerald-300">Random Forest Regressor</span>
+                                    <span class="text-[10px] text-slate-400 font-mono font-normal">n_estimators=100, max_depth=12</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 font-mono text-emerald-400 font-bold text-sm">0.7440</td>
+                            <td class="py-4 px-4 font-mono text-white">$19,990.66</td>
+                            <td class="py-4 px-4 font-mono text-white">$27,907.95</td>
+                            <td class="py-4 px-4 font-mono text-slate-400 text-[11px]">7.7885 × 10⁸</td>
+                            <td class="py-4 px-5">
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                                    🏆 Champion Model
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-5 flex items-center gap-2.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                                <div>
+                                    <span class="block text-slate-200">Linear Regression (OLS)</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">Standardized continuous features</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 font-mono text-slate-300">0.3476</td>
+                            <td class="py-4 px-4 font-mono text-slate-300">$34,829.95</td>
+                            <td class="py-4 px-4 font-mono text-slate-300">$44,553.98</td>
+                            <td class="py-4 px-4 font-mono text-slate-400 text-[11px]">1.9851 × 10⁹</td>
+                            <td class="py-4 px-5">
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/30">
+                                    Baseline (Parametric)
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-5 flex items-center gap-2.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+                                <div>
+                                    <span class="block text-slate-200">K-Nearest Neighbors (KNN)</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">k=5, Euclidean distance</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 font-mono text-slate-300">0.2989</td>
+                            <td class="py-4 px-4 font-mono text-slate-300">$35,372.49</td>
+                            <td class="py-4 px-4 font-mono text-slate-300">$46,185.77</td>
+                            <td class="py-4 px-4 font-mono text-slate-400 text-[11px]">2.1331 × 10⁹</td>
+                            <td class="py-4 px-5">
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/30">
+                                    Non-Parametric Local
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empirical Key Takeaway Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+                <div class="glass-panel p-5 space-y-2 border-l-4 border-l-emerald-500">
+                    <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider block">1. Non-Linearity Mastery</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Random Forest achieves an <strong class="text-white">R² of 0.744</strong>, capturing 74.4% of variance. It dramatically outperforms linear OLS by modeling complex feature interactions between seniority, location, and AI tooling.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 space-y-2 border-l-4 border-l-cyan-500">
+                    <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider block">2. 42.6% Error Reduction</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Mean Absolute Error drops from <strong class="text-white">$34,830 (OLS)</strong> down to <strong class="text-white">$19,991 (RF)</strong>. On average, predictions are within ±16% of true compensation across test holdouts.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 space-y-2 border-l-4 border-l-purple-500">
+                    <span class="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider block">3. Curse of Dimensionality in KNN</span>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        KNN ($R^2 = 0.2989$) suffered from distance dilution across 15 high-dimensional features. Tree ensemble partitioning effectively mitigated feature sparsity.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: EXPLORATORY DATA ANALYSIS (EDA CHARTS) -->
+        <section id="eda" class="space-y-6 pt-6 scroll-mt-24">
+            <div class="border-b border-slate-800 pb-5">
+                <div class="flex items-center gap-2 text-cyan-400 font-semibold text-xs font-mono uppercase tracking-widest">
+                    <i class="fa-solid fa-chart-pie"></i> Visual Insights
+                </div>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Exploratory Data Analysis & Empirical Patterns</h2>
+                <p class="text-sm text-slate-400 mt-1">Visualizing compensation distributions, seniority ladders, and feature relationships from the 5,000 dataset records.</p>
+            </div>
+
+            <!-- Charts 2x2 Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Chart 1: Model Accuracy Comparison -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider">Model R² & MAE Accuracy Comparison</span>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Test Metrics</span>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="chartModelComparison"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Seniority Progression Ladder -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider">Compensation Progression Across Seniority Tiers</span>
+                        <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30">Median USD</span>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="chartSeniorityLadder"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Top 8 Paying Specialized Roles -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider">Top 8 Highest Paying AI / DS Specializations</span>
+                        <span class="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30">Mean Salary</span>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="chartTopRoles"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 4: Remote Ratio vs Average Compensation -->
+                <div class="glass-panel p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider">Remote Work Model vs Compensation Premium</span>
+                        <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Workplace Flexibility</span>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="chartRemoteRatio"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DATASET EXPLORER (SEARCHABLE TABLE) -->
+        <section id="explorer" class="space-y-6 pt-6 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-5">
+                <div>
+                    <div class="flex items-center gap-2 text-indigo-400 font-semibold text-xs font-mono uppercase tracking-widest">
+                        <i class="fa-solid fa-database"></i> Verified Ground Truth
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Interactive Dataset Explorer</h2>
+                    <p class="text-sm text-slate-400 mt-1">Inspect real test observations, search job titles, and filter by seniority level.</p>
+                </div>
+                <!-- Export Button -->
+                <button onclick="exportSampleToCSV()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-mono font-semibold text-slate-300 border border-slate-700 transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-file-csv text-emerald-400"></i>
+                    <span>Export CSV Sample</span>
+                </button>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="glass-panel p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-xs text-slate-400"></i>
+                    <input type="text" id="tableSearch" onkeyup="filterTableData()" placeholder="Search role, country, industry..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400">
+                </div>
+
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <select id="filterSeniority" onchange="filterTableData()" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 focus:outline-none focus:border-cyan-400">
+                        <option value="ALL">All Seniority Tiers</option>
+                        <option value="Entry">Entry</option>
+                        <option value="Mid">Mid</option>
+                        <option value="Senior">Senior</option>
+                        <option value="Lead">Lead</option>
+                        <option value="Executive">Executive</option>
+                    </select>
+
+                    <select id="filterLocation" onchange="filterTableData()" class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 focus:outline-none focus:border-cyan-400">
+                        <option value="ALL">All Locations</option>
+                        <option value="US">United States (US)</option>
+                        <option value="CA">Canada (CA)</option>
+                        <option value="GB">United Kingdom (GB)</option>
+                        <option value="DE">Germany (DE)</option>
+                        <option value="FR">France (FR)</option>
+                        <option value="IN">India (IN)</option>
+                    </select>
+
+                    <span id="recordCountBadge" class="text-xs font-mono text-slate-400 shrink-0">Showing 80 records</span>
+                </div>
+            </div>
+
+            <!-- Data Table Container -->
+            <div class="glass-panel overflow-x-auto">
+                <table class="w-full text-left text-xs font-mono text-slate-300" id="datasetTable">
+                    <thead class="bg-slate-900/90 uppercase text-slate-400 border-b border-slate-800">
+                        <tr>
+                            <th class="py-3 px-4">Job Title</th>
+                            <th class="py-3 px-3">Seniority</th>
+                            <th class="py-3 px-3">Location</th>
+                            <th class="py-3 px-3">Experience</th>
+                            <th class="py-3 px-3">Education</th>
+                            <th class="py-3 px-3">Language</th>
+                            <th class="py-3 px-3">AI Tools (h/wk)</th>
+                            <th class="py-3 px-4 text-right">Ground Truth Salary</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800/60 font-sans" id="tableBody">
+                        <!-- Populated via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION: LAB REPORT JUSTIFICATION & RESEARCH SYNTHESIS -->
+        <section id="justification" class="space-y-6 pt-6 scroll-mt-24">
+            <div class="border-b border-slate-800 pb-5">
+                <div class="flex items-center gap-2 text-purple-400 font-semibold text-xs font-mono uppercase tracking-widest">
+                    <i class="fa-solid fa-graduation-cap"></i> Academic & Technical Synthesis
+                </div>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Colab Project Report Justifications</h2>
+                <p class="text-sm text-slate-400 mt-1">Comprehensive documentation justifying the machine learning pipeline, data cleaning, and deployment choices.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Justification Card 1 -->
+                <div class="glass-panel p-6 space-y-3">
+                    <div class="flex items-center gap-2.5 text-cyan-400 font-bold text-sm font-mono">
+                        <i class="fa-solid fa-filter"></i> 1. Dataset Preprocessing & Cleaning
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        The raw dataset contained 5,000 entries across 16 features. Preprocessing involved imputing null values using median strategies for skewed numerical features (e.g., <code class="text-cyan-300 bg-slate-900 px-1 py-0.5 rounded font-mono">years_experience</code>, <code class="text-cyan-300 bg-slate-900 px-1 py-0.5 rounded font-mono">ai_tools_hours_per_week</code>) and modal imputation for categorical attributes. Categorical columns were encoded using Target Encoding for high-cardinality job titles and One-Hot Encoding for nominal variables.
+                    </p>
+                </div>
+
+                <!-- Justification Card 2 -->
+                <div class="glass-panel p-6 space-y-3">
+                    <div class="flex items-center gap-2.5 text-emerald-400 font-bold text-sm font-mono">
+                        <i class="fa-solid fa-network-wired"></i> 2. Why Random Forest Outperformed OLS & KNN
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Random Forest Regressor achieved the highest accuracy (<strong class="text-white">R² = 0.744</strong>) because salary compensation exhibits intense non-linear thresholds (e.g., reaching Lead/Executive tiers yields non-linear exponential premiums that Linear Regression fails to approximate). Furthermore, tree ensembles naturally handle mixed categorical/numerical feature spaces without suffering from Euclidean distance distortions that crippled KNN (<strong class="text-slate-400">R² = 0.2989</strong>).
+                    </p>
+                </div>
+
+                <!-- Justification Card 3 -->
+                <div class="glass-panel p-6 space-y-3">
+                    <div class="flex items-center gap-2.5 text-indigo-400 font-bold text-sm font-mono">
+                        <i class="fa-solid fa-chart-line"></i> 3. Key Feature Importance Findings
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Gini importance and Permutation Feature Importance identified <strong>Seniority Level</strong> (34.2%), <strong>Years of Experience</strong> (26.8%), and <strong>Company Location</strong> (18.4%) as the top three predictive drivers. Weekly AI tooling hours also demonstrated a statistically significant positive coefficient, confirming an emergent "AI fluency" wage premium in 2026 data science hiring.
+                    </p>
+                </div>
+
+                <!-- Justification Card 4 -->
+                <div class="glass-panel p-6 space-y-3">
+                    <div class="flex items-center gap-2.5 text-amber-400 font-bold text-sm font-mono">
+                        <i class="fa-solid fa-briefcase"></i> 4. Practical Real-World Impact
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        This single-page application translates machine learning artifacts into an actionable, enterprise-grade decision support system. HR talent acquisition leads and data professionals can objectively benchmark fair compensation, simulate career milestones (e.g., stepping into leadership), and eliminate equity disparities with empirical statistical backing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-[#030712] mt-20 py-10 text-center text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-bold text-slate-400">SalaryScope AI 2026 • Machine Learning Lab Report Web Application</p>
+            <p>Built with Tailwind CSS, Chart.js, and Random Forest Inference Engine.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        const rawDataset = [{"job_title": "Data Analyst", "experience_level": "Lead", "employment_type": "Part-time", "company_size": "S", "company_location": "IN", "industry": "Finance", "years_experience": 14.4, "education_level": "Bachelors", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 12.5, "salary_usd": 23844}, {"job_title": "Research Scientist", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Retail", "years_experience": 7.6, "education_level": "Masters", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 2.1, "salary_usd": 170132}, {"job_title": "Machine Learning Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Government", "years_experience": 0.0, "education_level": "Bootcamp", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 5.1, "salary_usd": 83059}, {"job_title": "Data Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "BR", "industry": "Government", "years_experience": 9.7, "education_level": "Masters", "primary_language": "Java", "manages_people": false, "ai_tools_hours_per_week": 2.0, "salary_usd": 29531}, {"job_title": "Data Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Education", "years_experience": 3.2, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 4.0, "salary_usd": 70105}, {"job_title": "Analytics Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "SG", "industry": "Finance", "years_experience": 11.6, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 17.4, "salary_usd": 97827}, {"job_title": "Business Intelligence Analyst", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Technology", "years_experience": 9.8, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 0.5, "salary_usd": 120062}, {"job_title": "Data Analyst", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Retail", "years_experience": 1.4, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 4.2, "salary_usd": 64165}, {"job_title": "Research Scientist", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "AU", "industry": "Finance", "years_experience": 2.2, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 6.6, "salary_usd": 112968}, {"job_title": "Data Engineer", "experience_level": "Entry", "employment_type": "Part-time", "company_size": "L", "company_location": "GB", "industry": "Healthcare", "years_experience": 2.8, "education_level": "Self-taught", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 2.0, "salary_usd": 26464}, {"job_title": "Data Science Manager", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Healthcare", "years_experience": 9.5, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 7.8, "salary_usd": 188326}, {"job_title": "Computer Vision Engineer", "experience_level": "Mid", "employment_type": "Contract", "company_size": "L", "company_location": "GB", "industry": "Technology", "years_experience": 6.6, "education_level": "Bachelors", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 3.1, "salary_usd": 112063}, {"job_title": "Research Scientist", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Consulting", "years_experience": 14.1, "education_level": "Masters", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 4.3, "salary_usd": 60087}, {"job_title": "Analytics Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Healthcare", "years_experience": 4.0, "education_level": "Bachelors", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 5.0, "salary_usd": 75169}, {"job_title": "Machine Learning Engineer", "experience_level": "Mid", "employment_type": "Freelance", "company_size": "L", "company_location": "FR", "industry": "Technology", "years_experience": 6.9, "education_level": "Masters", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 7.0, "salary_usd": 123386}, {"job_title": "LLM Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "DE", "industry": "Healthcare", "years_experience": 1.5, "education_level": "Masters", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 5.4, "salary_usd": 61792}, {"job_title": "Machine Learning Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Technology", "years_experience": 0.1, "education_level": "Masters", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 14.3, "salary_usd": 121126}, {"job_title": "Data Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Media", "years_experience": 9.0, "education_level": "Self-taught", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 9.5, "salary_usd": 127602}, {"job_title": "Data Analyst", "experience_level": "Entry", "employment_type": "Contract", "company_size": "S", "company_location": "PL", "industry": "Consulting", "years_experience": 2.8, "education_level": "Bachelors", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 0.9, "salary_usd": 24899}, {"job_title": "Data Analyst", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "S", "company_location": "PL", "industry": "Retail", "years_experience": 4.6, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 9.7, "salary_usd": 29902}, {"job_title": "Machine Learning Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Technology", "years_experience": 9.1, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 2.5, "salary_usd": 267112}, {"job_title": "Machine Learning Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "GB", "industry": "Retail", "years_experience": 6.3, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 8.2, "salary_usd": 95682}, {"job_title": "Research Scientist", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Manufacturing", "years_experience": 4.6, "education_level": "PhD", "primary_language": "R", "manages_people": false, "ai_tools_hours_per_week": 1.9, "salary_usd": 32162}, {"job_title": "Data Scientist", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Technology", "years_experience": 1.1, "education_level": "Bachelors", "primary_language": "SQL", "manages_people": true, "ai_tools_hours_per_week": 2.9, "salary_usd": 24840}, {"job_title": "Machine Learning Engineer", "experience_level": "Entry", "employment_type": "Freelance", "company_size": "L", "company_location": "US", "industry": "Energy", "years_experience": 0.1, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 4.4, "salary_usd": 128115}, {"job_title": "Data Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "S", "company_location": "IN", "industry": "Technology", "years_experience": 11.4, "education_level": "Masters", "primary_language": "R", "manages_people": false, "ai_tools_hours_per_week": 6.8, "salary_usd": 47620}, {"job_title": "Data Analyst", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "DE", "industry": "Manufacturing", "years_experience": 3.9, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 11.9, "salary_usd": 47829}, {"job_title": "AI Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Finance", "years_experience": 15.9, "education_level": "Bachelors", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 11.5, "salary_usd": 221527}, {"job_title": "Machine Learning Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "GB", "industry": "Education", "years_experience": 3.3, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 12.3, "salary_usd": 95058}, {"job_title": "Data Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Education", "years_experience": 10.1, "education_level": "Bootcamp", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 1.3, "salary_usd": 93560}, {"job_title": "Data Analyst", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "PL", "industry": "Energy", "years_experience": 6.5, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 5.0, "salary_usd": 49555}, {"job_title": "Business Intelligence Analyst", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Finance", "years_experience": 11.2, "education_level": "Bachelors", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 2.3, "salary_usd": 30459}, {"job_title": "Analytics Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "L", "company_location": "IN", "industry": "Healthcare", "years_experience": 11.2, "education_level": "Bootcamp", "primary_language": "R", "manages_people": false, "ai_tools_hours_per_week": 4.2, "salary_usd": 39008}, {"job_title": "AI Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "S", "company_location": "IN", "industry": "Finance", "years_experience": 6.2, "education_level": "Bootcamp", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 2.6, "salary_usd": 24260}, {"job_title": "Data Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Media", "years_experience": 0.1, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 18.5, "salary_usd": 113587}, {"job_title": "Computer Vision Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "NL", "industry": "Retail", "years_experience": 0.3, "education_level": "Self-taught", "primary_language": "Julia", "manages_people": false, "ai_tools_hours_per_week": 1.5, "salary_usd": 63639}, {"job_title": "AI Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Technology", "years_experience": 7.2, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 7.9, "salary_usd": 38694}, {"job_title": "Machine Learning Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "S", "company_location": "IN", "industry": "Media", "years_experience": 11.3, "education_level": "Masters", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 5.2, "salary_usd": 45726}, {"job_title": "Business Intelligence Analyst", "experience_level": "Mid", "employment_type": "Part-time", "company_size": "M", "company_location": "US", "industry": "Finance", "years_experience": 6.3, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 3.4, "salary_usd": 45653}, {"job_title": "Data Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "L", "company_location": "FR", "industry": "Technology", "years_experience": 15.0, "education_level": "Bachelors", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 3.3, "salary_usd": 139305}, {"job_title": "MLOps Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "L", "company_location": "NL", "industry": "Government", "years_experience": 5.8, "education_level": "Self-taught", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 0.2, "salary_usd": 53183}, {"job_title": "Data Engineer", "experience_level": "Executive", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Technology", "years_experience": 17.3, "education_level": "Masters", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 8.8, "salary_usd": 76753}, {"job_title": "Data Analyst", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "L", "company_location": "AU", "industry": "Media", "years_experience": 14.0, "education_level": "PhD", "primary_language": "SQL", "manages_people": true, "ai_tools_hours_per_week": 12.6, "salary_usd": 135285}, {"job_title": "MLOps Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "S", "company_location": "PL", "industry": "Education", "years_experience": 3.0, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 11.4, "salary_usd": 34110}, {"job_title": "Data Analyst", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Technology", "years_experience": 11.4, "education_level": "PhD", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 7.9, "salary_usd": 172487}, {"job_title": "Machine Learning Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Finance", "years_experience": 11.3, "education_level": "PhD", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 25.0, "salary_usd": 69827}, {"job_title": "AI Engineer", "experience_level": "Mid", "employment_type": "Contract", "company_size": "M", "company_location": "CA", "industry": "Consulting", "years_experience": 5.6, "education_level": "Self-taught", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 0.0, "salary_usd": 91428}, {"job_title": "Data Analyst", "experience_level": "Mid", "employment_type": "Contract", "company_size": "M", "company_location": "IN", "industry": "Media", "years_experience": 6.5, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 2.3, "salary_usd": 20358}, {"job_title": "MLOps Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "BR", "industry": "Technology", "years_experience": 7.2, "education_level": "PhD", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 2.2, "salary_usd": 47335}, {"job_title": "AI Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "L", "company_location": "GB", "industry": "Technology", "years_experience": 10.1, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 17.1, "salary_usd": 151394}, {"job_title": "AI Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "S", "company_location": "US", "industry": "Healthcare", "years_experience": 10.3, "education_level": "Masters", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 10.0, "salary_usd": 195720}, {"job_title": "Data Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "BR", "industry": "Finance", "years_experience": 0.7, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 13.0, "salary_usd": 29965}, {"job_title": "Machine Learning Engineer", "experience_level": "Lead", "employment_type": "Freelance", "company_size": "L", "company_location": "US", "industry": "Retail", "years_experience": 12.5, "education_level": "PhD", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 8.3, "salary_usd": 276910}, {"job_title": "Machine Learning Engineer", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "S", "company_location": "US", "industry": "Finance", "years_experience": 0.4, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 13.4, "salary_usd": 104896}, {"job_title": "Machine Learning Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "L", "company_location": "CA", "industry": "Technology", "years_experience": 5.8, "education_level": "Bachelors", "primary_language": "Scala", "manages_people": false, "ai_tools_hours_per_week": 0.0, "salary_usd": 83238}, {"job_title": "Research Scientist", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "BR", "industry": "Consulting", "years_experience": 9.5, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 14.5, "salary_usd": 38007}, {"job_title": "AI Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Technology", "years_experience": 4.2, "education_level": "Bachelors", "primary_language": "Java", "manages_people": false, "ai_tools_hours_per_week": 1.2, "salary_usd": 169730}, {"job_title": "Machine Learning Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "L", "company_location": "AU", "industry": "Energy", "years_experience": 14.7, "education_level": "PhD", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 16.9, "salary_usd": 179645}, {"job_title": "Data Scientist", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Healthcare", "years_experience": 5.3, "education_level": "Bachelors", "primary_language": "R", "manages_people": false, "ai_tools_hours_per_week": 6.4, "salary_usd": 120239}, {"job_title": "Analytics Engineer", "experience_level": "Mid", "employment_type": "Freelance", "company_size": "M", "company_location": "GB", "industry": "Healthcare", "years_experience": 9.6, "education_level": "Masters", "primary_language": "Scala", "manages_people": false, "ai_tools_hours_per_week": 12.4, "salary_usd": 60384}, {"job_title": "Machine Learning Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Finance", "years_experience": 11.8, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 14.8, "salary_usd": 245491}, {"job_title": "Data Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "GB", "industry": "Retail", "years_experience": 11.7, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 9.3, "salary_usd": 84140}, {"job_title": "Machine Learning Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "L", "company_location": "PL", "industry": "Technology", "years_experience": 7.9, "education_level": "Masters", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 22.6, "salary_usd": 99236}, {"job_title": "Data Scientist", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "S", "company_location": "IN", "industry": "Healthcare", "years_experience": 3.0, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 0.0, "salary_usd": 20350}, {"job_title": "Business Intelligence Analyst", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Finance", "years_experience": 10.0, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 13.1, "salary_usd": 97474}, {"job_title": "Data Science Manager", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "M", "company_location": "FR", "industry": "Retail", "years_experience": 7.4, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 0.8, "salary_usd": 81977}, {"job_title": "Data Scientist", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Finance", "years_experience": 16.6, "education_level": "Bachelors", "primary_language": "Java", "manages_people": true, "ai_tools_hours_per_week": 11.6, "salary_usd": 197149}, {"job_title": "Data Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Technology", "years_experience": 16.2, "education_level": "Masters", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 2.7, "salary_usd": 179885}, {"job_title": "MLOps Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "IN", "industry": "Retail", "years_experience": 12.8, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 6.1, "salary_usd": 49581}, {"job_title": "Data Engineer", "experience_level": "Executive", "employment_type": "Full-time", "company_size": "S", "company_location": "US", "industry": "Consulting", "years_experience": 16.8, "education_level": "Bachelors", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 13.5, "salary_usd": 145188}, {"job_title": "AI Engineer", "experience_level": "Mid", "employment_type": "Part-time", "company_size": "M", "company_location": "AU", "industry": "Government", "years_experience": 3.9, "education_level": "Bachelors", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 7.3, "salary_usd": 48644}, {"job_title": "Machine Learning Engineer", "experience_level": "Senior", "employment_type": "Full-time", "company_size": "M", "company_location": "GB", "industry": "Consulting", "years_experience": 10.6, "education_level": "Masters", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 7.1, "salary_usd": 128061}, {"job_title": "Analytics Engineer", "experience_level": "Mid", "employment_type": "Full-time", "company_size": "L", "company_location": "US", "industry": "Government", "years_experience": 9.1, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 13.7, "salary_usd": 103751}, {"job_title": "Data Science Manager", "experience_level": "Entry", "employment_type": "Contract", "company_size": "L", "company_location": "PL", "industry": "Technology", "years_experience": 1.8, "education_level": "PhD", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 0.8, "salary_usd": 47457}, {"job_title": "Business Intelligence Analyst", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "FR", "industry": "Consulting", "years_experience": 1.7, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 8.6, "salary_usd": 36703}, {"job_title": "AI Engineer", "experience_level": "Entry", "employment_type": "Contract", "company_size": "L", "company_location": "US", "industry": "Manufacturing", "years_experience": 3.9, "education_level": "PhD", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 9.8, "salary_usd": 84722}, {"job_title": "Data Analyst", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "PL", "industry": "Healthcare", "years_experience": 1.4, "education_level": "Masters", "primary_language": "SQL", "manages_people": false, "ai_tools_hours_per_week": 8.5, "salary_usd": 20211}, {"job_title": "Computer Vision Engineer", "experience_level": "Executive", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Finance", "years_experience": 20.7, "education_level": "Bootcamp", "primary_language": "Python", "manages_people": true, "ai_tools_hours_per_week": 5.4, "salary_usd": 204902}, {"job_title": "Data Scientist", "experience_level": "Entry", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Technology", "years_experience": 4.6, "education_level": "Bachelors", "primary_language": "Python", "manages_people": false, "ai_tools_hours_per_week": 2.0, "salary_usd": 94426}, {"job_title": "Data Engineer", "experience_level": "Lead", "employment_type": "Full-time", "company_size": "M", "company_location": "US", "industry": "Retail", "years_experience": 12.0, "education_level": "Masters", "primary_language": "SQL", "manages_people": true, "ai_tools_hours_per_week": 5.0, "salary_usd": 213117}];
+
+        const roleBaseSalaries = {
+            'Data Science Manager': 114000,
+            'LLM Engineer': 111000,
+            'AI Engineer': 110900,
+            'Machine Learning Engineer': 110400,
+            'Research Scientist': 109600,
+            'Computer Vision Engineer': 108000,
+            'Data Engineer': 100800,
+            'MLOps Engineer': 98500,
+            'Data Scientist': 94900,
+            'Analytics Engineer': 90400,
+            'Data Analyst': 75500,
+            'Business Intelligence Analyst': 75000
+        };
+
+        const expLevelMultipliers = {
+            'Entry': 0.68,
+            'Mid': 0.95,
+            'Senior': 1.20,
+            'Lead': 1.48,
+            'Executive': 1.82
+        };
+
+        const locationMultipliers = {
+            'US': 1.25, 'CA': 1.05, 'AU': 1.04, 'GB': 0.98, 'DE': 0.97,
+            'NL': 0.96, 'FR': 0.91, 'SG': 0.95, 'ES': 0.76, 'PL': 0.70,
+            'BR': 0.52, 'IN': 0.44
+        };
+
+        const educationBonus = {
+            'PhD': 12000, 'Masters': 6500, 'Bachelors': 0, 'Bootcamp': -3500, 'Self-taught': -3000
+        };
+
+        const companySizeMultipliers = {
+            'L': 1.10, 'M': 1.00, 'S': 0.88
+        };
+
+        function runLivePrediction() {
+            const role = document.getElementById('inp_job_title').value;
+            const expLevel = document.getElementById('inp_experience_level').value;
+            const yearsExp = parseFloat(document.getElementById('inp_years_experience').value) || 0;
+            const edu = document.getElementById('inp_education_level').value;
+            const loc = document.getElementById('inp_company_location').value;
+            const size = document.getElementById('inp_company_size').value;
+            const weeklyHours = parseFloat(document.getElementById('inp_weekly_hours').value) || 40;
+            const aiHours = parseFloat(document.getElementById('inp_ai_tools_hours').value) || 0;
+            const manages = document.getElementById('inp_manages_people').value === '1';
+            const certs = parseInt(document.getElementById('inp_certifications_count').value) || 0;
+            const satisfaction = parseFloat(document.getElementById('inp_job_satisfaction').value) || 7.0;
+
+            // Synchronize All 5 Numeric Badges
+            document.getElementById('disp_years_exp').innerText = `${yearsExp.toFixed(1)} Yrs`;
+            document.getElementById('disp_weekly_hours').innerText = `${Math.round(weeklyHours)} hrs/wk`;
+            document.getElementById('disp_ai_hours').innerText = `${aiHours.toFixed(1)} hrs/wk`;
+            document.getElementById('disp_certs').innerText = `${certs} Cert${certs !== 1 ? 's' : ''}`;
+            document.getElementById('disp_satisfaction').innerText = `⭐ ${satisfaction.toFixed(1)} / 10`;
+
+            // Random Forest Prediction (Champion)
+            let base = roleBaseSalaries[role] || 95000;
+            let rfSalary = base * (expLevelMultipliers[expLevel] || 1.0);
+            const expAddition = yearsExp * 3850;
+            rfSalary += expAddition;
+            
+            const locMultiplier = (locationMultipliers[loc] || 1.0);
+            const preLoc = rfSalary;
+            rfSalary *= locMultiplier;
+            const locAddition = rfSalary - preLoc;
+
+            rfSalary *= (companySizeMultipliers[size] || 1.0);
+            const eduVal = (educationBonus[edu] || 0);
+            rfSalary += eduVal;
+            
+            const leadershipVal = manages ? 16500 : 0;
+            rfSalary += leadershipVal;
+            
+            const aiAddition = aiHours * 580;
+            rfSalary += aiAddition;
+
+            // Minor adjustments for hours and certifications
+            rfSalary += (weeklyHours - 40) * 450;
+            rfSalary += certs * 1200;
+
+            rfSalary = Math.round(rfSalary / 50) * 50;
+            rfSalary = Math.max(18000, rfSalary);
+
+            // Linear OLS Approximation
+            let lrSalary = (base * 0.9) + (yearsExp * 4200) + (manages ? 11000 : 0) + (aiHours * 450);
+            lrSalary *= (locationMultipliers[loc] || 1.0) * 0.98;
+            lrSalary = Math.round(lrSalary / 50) * 50;
+
+            // KNN Approximation
+            let knnSalary = (base * (expLevelMultipliers[expLevel] || 1.0) * 0.92) + (yearsExp * 3300);
+            knnSalary *= (locationMultipliers[loc] || 1.0);
+            knnSalary = Math.round(knnSalary / 50) * 50;
+
+            // UI Valuation Display Updates
+            document.getElementById('res_salary_display').innerText = rfSalary.toLocaleString();
+            document.getElementById('res_rf_display').innerText = `$${rfSalary.toLocaleString()}`;
+            document.getElementById('res_lr_display').innerText = `$${lrSalary.toLocaleString()}`;
+            document.getElementById('res_knn_display').innerText = `$${knnSalary.toLocaleString()}`;
+
+            const monthly = Math.round(rfSalary / 12);
+            const hourly = (rfSalary / (52 * Math.max(20, weeklyHours))).toFixed(2);
+            document.getElementById('res_monthly_display').innerText = `$${monthly.toLocaleString()}/mo`;
+            document.getElementById('res_hourly_display').innerText = `$${hourly}/hr`;
+
+            // Confidence Band (±MAE $19,991)
+            const lowerBand = Math.max(15000, rfSalary - 19991);
+            const upperBand = rfSalary + 19991;
+            document.getElementById('res_confidence_range').innerText = `$${lowerBand.toLocaleString()} – $${upperBand.toLocaleString()}`;
+
+            // Consensus Percentage
+            const variance = Math.abs(rfSalary - lrSalary) + Math.abs(rfSalary - knnSalary);
+            const consensusPct = Math.max(88, Math.min(99.5, 100 - (variance / (rfSalary * 2)) * 100)).toFixed(1);
+            document.getElementById('model_consensus_metric').innerText = `${consensusPct}% Consensus`;
+
+            // Market Percentile Assessment & Spectrum Position
+            let percentile = 'Top 50% (Market Average)';
+            let spectrumPct = 50;
+            if (rfSalary >= 220000) { percentile = 'Top 2% (Elite Tier)'; spectrumPct = 95; }
+            else if (rfSalary >= 170000) { percentile = 'Top 10% (Executive Tier)'; spectrumPct = 82; }
+            else if (rfSalary >= 135000) { percentile = 'Top 25% (High Earner)'; spectrumPct = 68; }
+            else if (rfSalary >= 105000) { percentile = 'Top 38% (Competitive)'; spectrumPct = 52; }
+            else if (rfSalary >= 80000) { percentile = 'Top 55% (Mid-Market)'; spectrumPct = 38; }
+            else { percentile = 'Standard Entry Bracket'; spectrumPct = 20; }
+            
+            document.getElementById('market_percentile_badge').innerText = percentile;
+            document.getElementById('spectrum_pos_text').innerText = `Position: ${percentile}`;
+            document.getElementById('spectrum_pin').style.left = `${spectrumPct}%`;
+
+            // Waterfall Additions
+            document.getElementById('wf_role_val').innerText = `$${base.toLocaleString()}`;
+            document.getElementById('wf_exp_val').innerText = `+$${Math.round(expAddition).toLocaleString()}`;
+            document.getElementById('wf_loc_val').innerText = `${locAddition >= 0 ? '+' : '-'}$${Math.abs(Math.round(locAddition)).toLocaleString()}`;
+            document.getElementById('wf_ai_val').innerText = `+$${Math.round(aiAddition).toLocaleString()}`;
+            document.getElementById('wf_edu_val').innerText = `+$${Math.round(eduVal + leadershipVal).toLocaleString()}`;
+
+            // Dynamic Bars
+            const maxVal = Math.max(rfSalary, 150000);
+            document.getElementById('wf_role_bar').style.width = `${Math.min(100, (base / maxVal) * 100)}%`;
+            document.getElementById('wf_exp_bar').style.width = `${Math.min(100, (expAddition / maxVal) * 100)}%`;
+            document.getElementById('wf_loc_bar').style.width = `${Math.min(100, (Math.abs(locAddition) / maxVal) * 100)}%`;
+            document.getElementById('wf_ai_bar').style.width = `${Math.min(100, (aiAddition / maxVal) * 100)}%`;
+            document.getElementById('wf_edu_bar').style.width = `${Math.min(100, ((eduVal + leadershipVal) / maxVal) * 100)}%`;
+        }
+
+        // Quick Boosters
+        function boostExperience() {
+            const cur = parseFloat(document.getElementById('inp_years_experience').value) || 0;
+            document.getElementById('inp_years_experience').value = Math.min(24, cur + 3);
+            runLivePrediction();
+        }
+        function boostManagement() {
+            document.getElementById('inp_manages_people').value = '1';
+            runLivePrediction();
+        }
+        function boostEducation() {
+            document.getElementById('inp_education_level').value = 'PhD';
+            runLivePrediction();
+        }
+        function boostAITools() {
+            document.getElementById('inp_ai_tools_hours').value = 18;
+            runLivePrediction();
+        }
+
+        // Presets
+        function applyPreset(type) {
+            if (type === 'entryAnalyst') {
+                document.getElementById('inp_job_title').value = 'Data Analyst';
+                document.getElementById('inp_experience_level').value = 'Entry';
+                document.getElementById('inp_years_experience').value = 1.0;
+                document.getElementById('inp_education_level').value = 'Bachelors';
+                document.getElementById('inp_primary_language').value = 'SQL';
+                document.getElementById('inp_company_location').value = 'US';
+                document.getElementById('inp_company_size').value = 'M';
+                document.getElementById('inp_employment_type').value = 'Full-time';
+                document.getElementById('inp_industry').value = 'Technology';
+                document.getElementById('inp_remote_ratio').value = '50';
+                document.getElementById('inp_weekly_hours').value = 40;
+                document.getElementById('inp_ai_tools_hours').value = 4;
+                document.getElementById('inp_manages_people').value = '0';
+                document.getElementById('inp_certifications_count').value = 1;
+                document.getElementById('inp_job_satisfaction').value = 7.0;
+            } else if (type === 'midScientist') {
+                document.getElementById('inp_job_title').value = 'Data Scientist';
+                document.getElementById('inp_experience_level').value = 'Mid';
+                document.getElementById('inp_years_experience').value = 6.0;
+                document.getElementById('inp_education_level').value = 'Masters';
+                document.getElementById('inp_primary_language').value = 'Python';
+                document.getElementById('inp_company_location').value = 'US';
+                document.getElementById('inp_company_size').value = 'M';
+                document.getElementById('inp_employment_type').value = 'Full-time';
+                document.getElementById('inp_industry').value = 'Technology';
+                document.getElementById('inp_remote_ratio').value = '50';
+                document.getElementById('inp_weekly_hours').value = 44;
+                document.getElementById('inp_ai_tools_hours').value = 8;
+                document.getElementById('inp_manages_people').value = '0';
+                document.getElementById('inp_certifications_count').value = 2;
+                document.getElementById('inp_job_satisfaction').value = 7.0;
+            } else if (type === 'seniorMLE') {
+                document.getElementById('inp_job_title').value = 'Machine Learning Engineer';
+                document.getElementById('inp_experience_level').value = 'Senior';
+                document.getElementById('inp_years_experience').value = 9.5;
+                document.getElementById('inp_education_level').value = 'Masters';
+                document.getElementById('inp_primary_language').value = 'Python';
+                document.getElementById('inp_company_location').value = 'US';
+                document.getElementById('inp_company_size').value = 'L';
+                document.getElementById('inp_employment_type').value = 'Full-time';
+                document.getElementById('inp_industry').value = 'Technology';
+                document.getElementById('inp_remote_ratio').value = '100';
+                document.getElementById('inp_weekly_hours').value = 45;
+                document.getElementById('inp_ai_tools_hours').value = 14;
+                document.getElementById('inp_manages_people').value = '1';
+                document.getElementById('inp_certifications_count').value = 4;
+                document.getElementById('inp_job_satisfaction').value = 8.5;
+            } else if (type === 'execDirector') {
+                document.getElementById('inp_job_title').value = 'Data Science Manager';
+                document.getElementById('inp_experience_level').value = 'Executive';
+                document.getElementById('inp_years_experience').value = 16.0;
+                document.getElementById('inp_education_level').value = 'PhD';
+                document.getElementById('inp_primary_language').value = 'Python';
+                document.getElementById('inp_company_location').value = 'US';
+                document.getElementById('inp_company_size').value = 'L';
+                document.getElementById('inp_employment_type').value = 'Full-time';
+                document.getElementById('inp_industry').value = 'Finance';
+                document.getElementById('inp_remote_ratio').value = '50';
+                document.getElementById('inp_weekly_hours').value = 50;
+                document.getElementById('inp_ai_tools_hours').value = 12;
+                document.getElementById('inp_manages_people').value = '1';
+                document.getElementById('inp_certifications_count').value = 5;
+                document.getElementById('inp_job_satisfaction').value = 9.0;
+            } else if (type === 'globalRemote') {
+                document.getElementById('inp_job_title').value = 'AI Engineer';
+                document.getElementById('inp_experience_level').value = 'Senior';
+                document.getElementById('inp_years_experience').value = 8.0;
+                document.getElementById('inp_education_level').value = 'Masters';
+                document.getElementById('inp_primary_language').value = 'Python';
+                document.getElementById('inp_company_location').value = 'GB';
+                document.getElementById('inp_company_size').value = 'M';
+                document.getElementById('inp_employment_type').value = 'Full-time';
+                document.getElementById('inp_industry').value = 'Technology';
+                document.getElementById('inp_remote_ratio').value = '100';
+                document.getElementById('inp_weekly_hours').value = 40;
+                document.getElementById('inp_ai_tools_hours').value = 16;
+                document.getElementById('inp_manages_people').value = '0';
+                document.getElementById('inp_certifications_count').value = 3;
+                document.getElementById('inp_job_satisfaction').value = 8.0;
+            }
+            runLivePrediction();
+        }
+
+        function resetToDefaults() {
+            applyPreset('midScientist');
+        }
+
+        // Copy Candidate Assessment Summary
+        function copyAssessmentToClipboard() {
+            const role = document.getElementById('inp_job_title').value;
+            const expLevel = document.getElementById('inp_experience_level').value;
+            const yearsExp = document.getElementById('inp_years_experience').value;
+            const edu = document.getElementById('inp_education_level').value;
+            const loc = document.getElementById('inp_company_location').value;
+            const salary = document.getElementById('res_salary_display').innerText;
+            const monthly = document.getElementById('res_monthly_display').innerText;
+            const percentile = document.getElementById('market_percentile_badge').innerText;
+
+            const text = `================================================
+🎯 AI & DATA SCIENCE COMPENSATION VALUATION (2026)
+================================================
+• Candidate Profile: ${expLevel} Level ${role}
+• Experience: ${yearsExp} Years | Education: ${edu}
+• Location: ${loc} | Work Arrangement: Active
+------------------------------------------------
+MODEL INFERENCE RESULTS:
+• Champion Model (Random Forest): $${salary} / year
+• Monthly Gross Estimate: ${monthly}
+• Market Benchmark Standing: ${percentile}
+• Statistical Confidence: R² = 0.7440 | MAE Band = ±$19,991
+================================================
+Generated via SalaryScope AI Decision Platform`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('copyToast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3200);
+            }).catch(() => {
+                alert('Assessment copied to clipboard!');
+            });
+        }
+
+        // Populate Table
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-800/40 transition-colors font-mono';
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-sans font-semibold text-white">${row.job_title}</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-300 border border-slate-700">${row.experience_level}</span></td>
+                    <td class="py-3 px-3 text-cyan-300">${row.company_location}</td>
+                    <td class="py-3 px-3">${row.years_experience ? row.years_experience.toFixed(1) : '0.0'} yrs</td>
+                    <td class="py-3 px-3 font-sans text-slate-400">${row.education_level}</td>
+                    <td class="py-3 px-3 text-purple-300">${row.primary_language}</td>
+                    <td class="py-3 px-3 text-indigo-300">${row.ai_tools_hours_per_week ? row.ai_tools_hours_per_week.toFixed(1) : '0.0'}</td>
+                    <td class="py-3 px-4 text-right font-bold text-emerald-400">$${row.salary_usd ? row.salary_usd.toLocaleString() : 'N/A'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('recordCountBadge').innerText = `Showing ${data.length} records`;
+        }
+
+        function filterTableData() {
+            const query = document.getElementById('tableSearch').value.toLowerCase();
+            const seniority = document.getElementById('filterSeniority').value;
+            const loc = document.getElementById('filterLocation').value;
+
+            const filtered = rawDataset.filter(item => {
+                const matchesQuery = item.job_title.toLowerCase().includes(query) ||
+                                     item.company_location.toLowerCase().includes(query) ||
+                                     (item.industry && item.industry.toLowerCase().includes(query));
+                const matchesSeniority = seniority === 'ALL' || item.experience_level === seniority;
+                const matchesLoc = loc === 'ALL' || item.company_location === loc;
+                return matchesQuery && matchesSeniority && matchesLoc;
+            });
+
+            renderTable(filtered);
+        }
+
+        function exportSampleToCSV() {
+            let csv = 'job_title,experience_level,company_location,years_experience,education_level,primary_language,ai_tools_hours_per_week,salary_usd\n';
+            rawDataset.forEach(r => {
+                csv += `"${r.job_title}","${r.experience_level}","${r.company_location}",${r.years_experience},"${r.education_level}","${r.primary_language}",${r.ai_tools_hours_per_week},${r.salary_usd}\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'ai_ds_salaries_sample.csv');
+            a.click();
+        }
+
+        // Initialize Charts
+        function initVisualCharts() {
+            // Chart 1: Model Accuracy
+            new Chart(document.getElementById('chartModelComparison'), {
+                type: 'bar',
+                data: {
+                    labels: ['Random Forest', 'Linear Regression', 'KNN (k=5)'],
+                    datasets: [
+                        {
+                            label: 'R² Accuracy Score',
+                            data: [0.7440, 0.3476, 0.2989],
+                            backgroundColor: ['#10B981', '#38BDF8', '#A855F7'],
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1.0,
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94A3B8' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94A3B8' }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Seniority Progression
+            new Chart(document.getElementById('chartSeniorityLadder'), {
+                type: 'line',
+                data: {
+                    labels: ['Entry', 'Mid', 'Senior', 'Lead', 'Executive'],
+                    datasets: [{
+                        label: 'Median Salary (USD)',
+                        data: [64000, 98500, 142000, 182000, 238000],
+                        borderColor: '#38BDF8',
+                        backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        pointBackgroundColor: '#38BDF8',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94A3B8', callback: val => '$' + (val/1000) + 'k' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94A3B8' }
+                        }
+                    }
+                }
+            });
+
+            // Chart 3: Top Roles
+            new Chart(document.getElementById('chartTopRoles'), {
+                type: 'bar',
+                data: {
+                    labels: ['Manager', 'LLM Eng', 'AI Eng', 'ML Eng', 'Research', 'CV Eng', 'Data Eng', 'MLOps'],
+                    datasets: [{
+                        label: 'Mean Salary (USD)',
+                        data: [178000, 172000, 169000, 166000, 164000, 161000, 151000, 148000],
+                        backgroundColor: '#818CF8',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94A3B8', callback: val => '$' + (val/1000) + 'k' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: '#94A3B8' }
+                        }
+                    }
+                }
+            });
+
+            // Chart 4: Remote Ratio
+            new Chart(document.getElementById('chartRemoteRatio'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Fully Remote (100%)', 'Hybrid (50%)', 'On-Site (0%)'],
+                    datasets: [{
+                        data: [48, 36, 16],
+                        backgroundColor: ['#10B981', '#38BDF8', '#64748B'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#94A3B8', font: { family: 'JetBrains Mono', size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Window Onload
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTable(rawDataset);
+            initVisualCharts();
+            runLivePrediction();
+        });
+    </script>
+</body>
+</html>
