@@ -1256,7 +1256,7 @@
         };
 
         // Robust Dark/Light Toggle with Chart Synchronization
-        let chartInstances = {};
+        var chartInstances = {};
 
         function setTheme(mode) {
             const html = document.documentElement;
@@ -1862,7 +1862,7 @@ Validated against 5,000 ground truth data science salaries.`;
             chartInstances.education = new Chart(document.getElementById('chartEducation'), {
                 type: 'bar',
                 data: {
-                    labels: ['Doctorate (PhD)', 'Master's Degree', 'Bachelor's', 'Self-Taught', 'Bootcamp'],
+                    labels: ["Doctorate (PhD)", "Master's Degree", "Bachelor's Degree", "Self-Taught", "Bootcamp"],
                     datasets: [{
                         label: 'Mean Salary ($ USD)',
                         data: [114580, 103030, 94210, 88420, 88050],
