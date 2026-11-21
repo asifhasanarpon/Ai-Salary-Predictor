@@ -145,11 +145,12 @@
                 </div>
             </div>
 
-            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
+            <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
                 <a href="#predictor" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Predictor</a>
                 <a href="#benchmark" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Benchmark</a>
                 <a href="#architecture" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Architecture</a>
-                <a href="#analytics" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Diagrams & Charts</a>
+                <a href="#colab-diagrams" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-emerald-600 dark:text-emerald-400 font-bold">Colab Diagrams</a>
+                <a href="#analytics" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Interactive Charts</a>
                 <a href="#explorer" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dataset Vault</a>
                 <a href="#methodology" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Methodology</a>
             </nav>
@@ -191,7 +192,7 @@
             </h1>
 
             <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                Predict, benchmark, and analyze tech compensation across 15 multidimensional parameters powered by our <strong>74.4% accuracy Random Forest champion architecture</strong>.
+                Predict, benchmark, and evaluate tech compensation across 15 multidimensional parameters powered by our <strong>74.4% accuracy Random Forest champion architecture</strong>.
             </p>
 
             <div class="flex items-center justify-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400 pt-1">
@@ -918,17 +919,195 @@
             </div>
         </section>
 
-        <!-- 5. COMPREHENSIVE VISUAL ANALYTICS & DIAGRAM HUB (8 DIAGRAMS) -->
+        <!-- 5. ORIGINAL COLAB LAB REPORT DIAGRAMS (CELLS 12, 13, 14, 15, 40) -->
+        <section id="colab-diagrams" class="space-y-6 scroll-mt-20">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-flask"></i> Colab Notebook Artifacts
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
+                        Original Lab Report Diagrams (Matplotlib & Seaborn)
+                    </h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        High-resolution figures generated directly during experimental training inside <code class="text-emerald-600 dark:text-emerald-400">AI_Ds_Salary_ML_LabReport.ipynb</code>.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                        5 Figures Extracted
+                    </span>
+                </div>
+            </div>
+
+            <!-- Colab Diagram Cards Grid -->
+            <div class="space-y-8">
+
+                <!-- FEATURED FIGURE 1: Actual vs Predicted Salary Comparison (Cell 40) -->
+                <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-emerald-500/80 shadow-lg space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <div>
+                            <span class="text-xs font-bold font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-crown text-amber-500"></i> Notebook Cell 40: Core Model Evaluation
+                            </span>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-0.5">
+                                Visual Comparison: Actual vs Predicted Salary (Linear vs KNN vs Random Forest)
+                            </h3>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs font-mono">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">N=1,000 Test Set</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold">RF R²=0.7440</span>
+                        </div>
+                    </div>
+
+                    <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 p-2 sm:p-4 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                        <img src="assets/colab_diagrams/actual_vs_predicted.png" alt="Actual vs Predicted Salary (Linear Regression, KNN Regressor, Random Forest)" class="w-full h-auto max-h-[500px] object-contain rounded-lg shadow-sm" loading="lazy">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
+                            <strong class="text-slate-900 dark:text-white block font-mono text-xs">Linear Regression (R² = 0.3476)</strong>
+                            <p>Points deviate substantially from the red diagonal fit line, illustrating significant variance and inability to capture non-linear market interactions.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
+                            <strong class="text-slate-900 dark:text-white block font-mono text-xs">KNN Regressor (R² = 0.2989)</strong>
+                            <p>High scatter across test cases. Due to the curse of dimensionality across 15 features, neighbor distances become equidistant and noisy.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/80 space-y-1">
+                            <strong class="text-emerald-700 dark:text-emerald-400 block font-mono text-xs">Random Forest (R² = 0.7440)</strong>
+                            <p class="text-emerald-900 dark:text-emerald-200">Predictions tightly cluster along the ideal 45° parity dashed line with minimal dispersion, confirming superior predictive power.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-COLUMN GRID: Target Distribution (Cell 12) & Experience Distribution (Cell 13) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- FIGURE 2: Target Salary Distribution (Cell 12) -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2.5">
+                            <span class="text-xs font-bold font-mono text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                                Notebook Cell 12: Target Variable Distribution
+                            </span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300">
+                                30 Bins + KDE
+                            </span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">
+                                Distribution of Annual Salary (USD)
+                            </h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                Right-skewed compensation curve with mean at $98,605 and median at $90,572.
+                            </p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                            <img src="assets/colab_diagrams/target_salary_distribution.png" alt="Distribution of Annual Salary (USD)" class="w-full h-auto max-h-[320px] object-contain rounded-lg" loading="lazy">
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono border-t border-slate-100 dark:border-slate-800 pt-2">
+                            Standard deviation of $55,369 reflects competitive pay bands up to $372,347 for executive roles.
+                        </p>
+                    </div>
+
+                    <!-- FIGURE 3: Experience Level Distribution (Cell 13) -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2.5">
+                            <span class="text-xs font-bold font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
+                                Notebook Cell 13: Demographics Breakdown
+                            </span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">
+                                Countplot
+                            </span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">
+                                Experience Level Distribution
+                            </h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                Mid (1,613) and Senior (1,520) form 62.7% of the total dataset population.
+                            </p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                            <img src="assets/colab_diagrams/experience_level_distribution.png" alt="Experience Level Distribution" class="w-full h-auto max-h-[320px] object-contain rounded-lg" loading="lazy">
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono border-t border-slate-100 dark:border-slate-800 pt-2">
+                            Entry: 985 records | Lead: 656 records | Executive: 226 records.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- 2-COLUMN GRID: Numerical Distributions (Cell 14) & Boxplots (Cell 15) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- FIGURE 4: Numerical Feature Distributions (Cell 14) -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2.5">
+                            <span class="text-xs font-bold font-mono text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                                Notebook Cell 14: Multimodal EDA
+                            </span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
+                                7 Subplots
+                            </span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">
+                                Distribution of Numerical Features
+                            </h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                20-bin histogram matrices evaluating continuous variables prior to scaling.
+                            </p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                            <img src="assets/colab_diagrams/numerical_distributions.png" alt="Distribution of Numerical Features" class="w-full h-auto max-h-[380px] object-contain rounded-lg" loading="lazy">
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono border-t border-slate-100 dark:border-slate-800 pt-2">
+                            Features examined: Remote ratio, years experience, certs, weekly hours, AI tools, satisfaction, salary.
+                        </p>
+                    </div>
+
+                    <!-- FIGURE 5: Outlier Identification Boxplots (Cell 15) -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2.5">
+                            <span class="text-xs font-bold font-mono text-rose-600 dark:text-rose-400 uppercase tracking-wider">
+                                Notebook Cell 15: Outlier Diagnostics
+                            </span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
+                                Boxplots
+                            </span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white">
+                                Boxplots for Numerical Features (Outlier Check)
+                            </h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                IQR box-and-whisker plots detecting potential extreme outliers.
+                            </p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                            <img src="assets/colab_diagrams/numerical_boxplots.png" alt="Boxplots for Numerical Features" class="w-full h-auto max-h-[380px] object-contain rounded-lg" loading="lazy">
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 font-mono border-t border-slate-100 dark:border-slate-800 pt-2">
+                            Verified clean distribution with upper whisker outliers in salary preserved as valid executive compensation.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. COMPREHENSIVE INTERACTIVE VISUAL ANALYTICS (8 CHART.JS DIAGRAMS) -->
         <section id="analytics" class="space-y-6 scroll-mt-20">
             <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
                 <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-chart-pie"></i> Visual Intelligence & Empirical Analytics
+                    <i class="fa-solid fa-chart-pie"></i> Visual Intelligence & Interactive Dashboards
                 </div>
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1">
-                    Complete Analytical Diagrams & Empirical Distributions
+                    Interactive Empirical Distributions & Feature Models
                 </h2>
                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    8 interactive charts covering model accuracy, loss reduction, XAI feature importance, seniority trajectory, role hierarchy, and geographic arbitrage.
+                    8 real-time interactive charts with dynamic tooltip inspection and automated dark/light color synchronization.
                 </p>
             </div>
 
@@ -1082,7 +1261,7 @@
             </div>
         </section>
 
-        <!-- 6. DATASET VAULT -->
+        <!-- 7. DATASET VAULT -->
         <section id="explorer" class="space-y-4 scroll-mt-20">
             <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                 <div>
@@ -1134,7 +1313,7 @@
             </div>
         </section>
 
-        <!-- 7. ACADEMIC METHODOLOGY & LAB REPORT RUBRICS -->
+        <!-- 8. ACADEMIC METHODOLOGY & LAB REPORT RUBRICS -->
         <section id="methodology" class="space-y-4 scroll-mt-20">
             <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
                 <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-xs font-mono font-semibold uppercase tracking-wider">
