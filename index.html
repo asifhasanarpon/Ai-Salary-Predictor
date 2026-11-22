@@ -55,7 +55,118 @@
             transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
         }
 
-        /* Clean Professional Sliders */
+        /* Dynamic Multi-Color Palette Architecture */
+        :root, html[data-theme="cyan"] {
+            --theme-primary: #06B6D4;
+            --theme-primary-hover: #0891B2;
+            --theme-gradient: linear-gradient(135deg, #06B6D4 0%, #0EA5E9 50%, #3B82F6 100%);
+            --theme-glow: rgba(6, 182, 212, 0.4);
+            --theme-border: rgba(6, 182, 212, 0.35);
+            --theme-border-focus: #06B6D4;
+            --theme-bg-subtle: rgba(6, 182, 212, 0.08);
+            --theme-text: #0891B2;
+            --theme-slider-thumb: #06B6D4;
+            --theme-chart-accent: #06B6D4;
+        }
+        .dark, html[data-theme="cyan"].dark {
+            --theme-text: #22D3EE;
+        }
+
+        html[data-theme="violet"] {
+            --theme-primary: #8B5CF6;
+            --theme-primary-hover: #7C3AED;
+            --theme-gradient: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #EC4899 100%);
+            --theme-glow: rgba(139, 92, 246, 0.4);
+            --theme-border: rgba(139, 92, 246, 0.35);
+            --theme-border-focus: #8B5CF6;
+            --theme-bg-subtle: rgba(139, 92, 246, 0.08);
+            --theme-text: #7C3AED;
+            --theme-slider-thumb: #8B5CF6;
+            --theme-chart-accent: #8B5CF6;
+        }
+        html[data-theme="violet"].dark {
+            --theme-text: #C084FC;
+        }
+
+        html[data-theme="emerald"] {
+            --theme-primary: #10B981;
+            --theme-primary-hover: #059669;
+            --theme-gradient: linear-gradient(135deg, #059669 0%, #10B981 50%, #14B8A6 100%);
+            --theme-glow: rgba(16, 185, 129, 0.4);
+            --theme-border: rgba(16, 185, 129, 0.35);
+            --theme-border-focus: #10B981;
+            --theme-bg-subtle: rgba(16, 185, 129, 0.08);
+            --theme-text: #059669;
+            --theme-slider-thumb: #10B981;
+            --theme-chart-accent: #10B981;
+        }
+        html[data-theme="emerald"].dark {
+            --theme-text: #34D399;
+        }
+
+        html[data-theme="amber"] {
+            --theme-primary: #F59E0B;
+            --theme-primary-hover: #D97706;
+            --theme-gradient: linear-gradient(135deg, #F59E0B 0%, #EA580C 50%, #EF4444 100%);
+            --theme-glow: rgba(245, 158, 11, 0.4);
+            --theme-border: rgba(245, 158, 11, 0.35);
+            --theme-border-focus: #F59E0B;
+            --theme-bg-subtle: rgba(245, 158, 11, 0.08);
+            --theme-text: #D97706;
+            --theme-slider-thumb: #F59E0B;
+            --theme-chart-accent: #F59E0B;
+        }
+        html[data-theme="amber"].dark {
+            --theme-text: #FBBF24;
+        }
+
+        html[data-theme="blue"] {
+            --theme-primary: #2563EB;
+            --theme-primary-hover: #1D4ED8;
+            --theme-gradient: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #6366F1 100%);
+            --theme-glow: rgba(37, 99, 235, 0.4);
+            --theme-border: rgba(37, 99, 235, 0.35);
+            --theme-border-focus: #2563EB;
+            --theme-bg-subtle: rgba(37, 99, 235, 0.08);
+            --theme-text: #2563EB;
+            --theme-slider-thumb: #2563EB;
+            --theme-chart-accent: #2563EB;
+        }
+        html[data-theme="blue"].dark {
+            --theme-text: #60A5FA;
+        }
+
+        /* Dynamic Component Utility Classes */
+        .theme-btn {
+            background: var(--theme-gradient) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px var(--theme-glow) !important;
+            transition: all 0.2s ease !important;
+        }
+        .theme-btn:hover {
+            filter: brightness(1.1) !important;
+            box-shadow: 0 6px 20px var(--theme-glow) !important;
+            transform: translateY(-1px);
+        }
+        .theme-text {
+            color: var(--theme-text) !important;
+        }
+        .theme-border {
+            border-color: var(--theme-border) !important;
+        }
+        .theme-bg-subtle {
+            background: var(--theme-bg-subtle) !important;
+        }
+        .theme-gradient-bg {
+            background: var(--theme-gradient) !important;
+        }
+        .theme-gradient-text {
+            background: var(--theme-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Clean Professional Sliders with Dynamic Thumb */
         .slider-pro {
             -webkit-appearance: none;
             width: 100%;
@@ -75,14 +186,14 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: #2563EB;
+            background: var(--theme-slider-thumb);
             cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            transition: transform 0.1s ease, background-color 0.15s ease;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+            transition: transform 0.1s ease, background-color 0.15s ease, box-shadow 0.15s ease;
         }
         .slider-pro::-webkit-slider-thumb:hover {
             transform: scale(1.15);
-            background: #1D4ED8;
+            box-shadow: 0 0 10px var(--theme-glow);
         }
 
         /* Custom Scrollbar */
@@ -134,7 +245,7 @@
     <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm">
+                <div class="w-9 h-9 rounded-xl theme-gradient-bg flex items-center justify-center text-white shadow-sm">
                     <i class="fa-solid fa-brain text-sm"></i>
                 </div>
                 <div>
@@ -156,6 +267,16 @@
             </nav>
 
             <div class="flex items-center gap-3">
+                <!-- 5-Color Theme Palette Selector -->
+                <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 shadow-xs" title="Select Color Scheme">
+                    <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400 px-1 hidden md:inline">Color:</span>
+                    <button type="button" onclick="setColorTheme('cyan')" id="paletteBtn_cyan" class="palette-dot w-4 h-4 rounded-full bg-cyan-400 transition-all cursor-pointer ring-2 ring-white scale-110 shadow-sm" title="Cyber Cyan / Oceanic Teal"></button>
+                    <button type="button" onclick="setColorTheme('violet')" id="paletteBtn_violet" class="palette-dot w-4 h-4 rounded-full bg-purple-500 transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-sm" title="Electric Violet / Amethyst"></button>
+                    <button type="button" onclick="setColorTheme('emerald')" id="paletteBtn_emerald" class="palette-dot w-4 h-4 rounded-full bg-emerald-400 transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-sm" title="Cyber Emerald / Jade"></button>
+                    <button type="button" onclick="setColorTheme('amber')" id="paletteBtn_amber" class="palette-dot w-4 h-4 rounded-full bg-amber-400 transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-sm" title="Sunset Gold / Amber"></button>
+                    <button type="button" onclick="setColorTheme('blue')" id="paletteBtn_blue" class="palette-dot w-4 h-4 rounded-full bg-blue-500 transition-all cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 shadow-sm" title="Corporate Sapphire Blue"></button>
+                </div>
+
                 <!-- Segmented Pro Theme Switcher -->
                 <div class="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 shadow-xs" role="group" aria-label="Theme Switcher">
                     <button type="button" onclick="setTheme('light')" id="themeLightBtn" class="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer" title="Light Mode (Press 'T' to toggle)">
@@ -188,7 +309,7 @@
 
             <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                 AI & Data Science <br/>
-                <span class="bg-gradient-to-r from-amber-500 via-orange-600 to-emerald-500 bg-clip-text text-transparent">Salary Predictor & Lab Report</span>
+                <span class="theme-gradient-text">Salary Predictor & Lab Report</span>
             </h1>
 
             <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -252,8 +373,8 @@
                         </div>
 
                         <div class="grid grid-cols-3 gap-2 font-mono text-center">
-                            <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-800">
-                                <span class="text-[10px] text-amber-800 dark:text-amber-300 font-bold block">HistGradient</span>
+                            <div class="p-2.5 rounded-xl theme-bg-subtle theme-border border">
+                                <span class="text-[10px] theme-text font-bold block">HistGradient</span>
                                 <span id="res_rf" class="text-xs font-bold text-slate-900 dark:text-white block mt-0.5">$124,500</span>
                                 <span class="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold block">MAE: $15.2k</span>
                             </div>
@@ -358,7 +479,7 @@
 
                         <!-- MODULE 1: Identity & Technical Expertise -->
                         <div class="space-y-4">
-                            <div class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <div class="text-xs font-bold uppercase tracking-wider theme-text pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fa-solid fa-user-check"></i> 1. Role & Profile</span>
                                 <span class="text-[10px] text-slate-400 font-mono">5 Inputs</span>
                             </div>
@@ -407,7 +528,7 @@
                             <div>
                                 <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="years_experience">
                                     <span>Years of Experience (0 - 24)</span>
-                                    <span id="disp_years_exp" class="text-amber-600 dark:text-amber-400 font-mono font-bold">6.0 Yrs</span>
+                                    <span id="disp_years_exp" class="theme-text font-mono font-bold">6.0 Yrs</span>
                                 </label>
                                 <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="years_experience" min="0" max="24" step="0.5" value="6.0" oninput="calculateSalary()" class="slider-pro">
@@ -454,7 +575,7 @@
 
                         <!-- MODULE 2: Company & Location -->
                         <div class="space-y-4">
-                            <div class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <div class="text-xs font-bold uppercase tracking-wider theme-text pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fa-solid fa-building"></i> 2. Company & Location</span>
                                 <span class="text-[10px] text-slate-400 font-mono">5 Inputs</span>
                             </div>
@@ -551,7 +672,7 @@
 
                         <!-- MODULE 3: Workload & Productivity -->
                         <div class="space-y-4">
-                            <div class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <div class="text-xs font-bold uppercase tracking-wider theme-text pb-1.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                                 <span class="flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> 3. Workload & Productivity</span>
                                 <span class="text-[10px] text-slate-400 font-mono">5 Inputs</span>
                             </div>
@@ -559,7 +680,7 @@
                             <div>
                                 <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="weekly_hours">
                                     <span>Weekly Work Hours</span>
-                                    <span id="disp_weekly_hours" class="text-amber-600 dark:text-amber-400 font-mono font-bold">44 hrs/wk</span>
+                                    <span id="disp_weekly_hours" class="theme-text font-mono font-bold">44 hrs/wk</span>
                                 </label>
                                 <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="weekly_hours" min="20" max="60" step="1" value="44" oninput="calculateSalary()" class="slider-pro">
@@ -569,7 +690,7 @@
                             <div>
                                 <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="ai_tools_hours">
                                     <span>AI Tools Usage (Hours/Week)</span>
-                                    <span id="disp_ai_hours" class="text-amber-600 dark:text-amber-400 font-mono font-bold">8.0 hrs/wk</span>
+                                    <span id="disp_ai_hours" class="theme-text font-mono font-bold">8.0 hrs/wk</span>
                                 </label>
                                 <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="ai_tools_hours" min="0" max="35" step="0.5" value="8.0" oninput="calculateSalary()" class="slider-pro">
@@ -594,7 +715,7 @@
                             <div>
                                 <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="certifications_count">
                                     <span>Professional Certifications</span>
-                                    <span id="disp_certs" class="text-amber-600 dark:text-amber-400 font-mono font-bold">2 Certs</span>
+                                    <span id="disp_certs" class="theme-text font-mono font-bold">2 Certs</span>
                                 </label>
                                 <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="certifications_count" min="0" max="8" step="1" value="2" oninput="calculateSalary()" class="slider-pro">
@@ -604,7 +725,7 @@
                             <div>
                                 <label class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="job_satisfaction_score">
                                     <span>Job Satisfaction (1 – 10)</span>
-                                    <span id="disp_satisfaction" class="text-amber-600 dark:text-amber-400 font-mono font-bold">7.0 / 10</span>
+                                    <span id="disp_satisfaction" class="theme-text font-mono font-bold">7.0 / 10</span>
                                 </label>
                                 <div class="w-full h-11 px-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 flex items-center">
                                     <input type="range" id="job_satisfaction_score" min="1" max="10" step="0.5" value="7.0" oninput="calculateSalary()" class="slider-pro">
@@ -630,7 +751,7 @@
                                 <i class="fa-solid fa-rotate-left"></i>
                                 <span>Reset Defaults</span>
                             </button>
-                            <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-bold shadow-md shadow-orange-500/20 transition-all flex items-center gap-2 cursor-pointer">
+                            <button type="submit" class="px-6 py-2.5 rounded-xl theme-btn text-white text-xs font-bold shadow-md transition-all flex items-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-calculator"></i>
                                 <span>Calculate Valuation</span>
                             </button>
@@ -1528,11 +1649,105 @@
             setTheme(isDark ? 'light' : 'dark');
         }
 
+        // Dynamic Theme Palettes Engine
+        const colorPalettes = {
+            cyan: {
+                name: 'Cyber Cyan',
+                primary: '#06B6D4',
+                secondary: '#3B82F6',
+                lineBg: 'rgba(6, 182, 212, 0.15)'
+            },
+            violet: {
+                name: 'Electric Violet',
+                primary: '#8B5CF6',
+                secondary: '#EC4899',
+                lineBg: 'rgba(139, 92, 246, 0.15)'
+            },
+            emerald: {
+                name: 'Cyber Emerald',
+                primary: '#10B981',
+                secondary: '#06B6D4',
+                lineBg: 'rgba(16, 185, 129, 0.15)'
+            },
+            amber: {
+                name: 'Sunset Gold',
+                primary: '#F59E0B',
+                secondary: '#EA580C',
+                lineBg: 'rgba(245, 158, 11, 0.15)'
+            },
+            blue: {
+                name: 'Sapphire Tech',
+                primary: '#2563EB',
+                secondary: '#6366F1',
+                lineBg: 'rgba(37, 99, 235, 0.15)'
+            }
+        };
+
+        function setColorTheme(themeName) {
+            if (!colorPalettes[themeName]) themeName = 'cyan';
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('salaryscope_palette', themeName);
+
+            ['cyan', 'violet', 'emerald', 'amber', 'blue'].forEach(p => {
+                const btn = document.getElementById('paletteBtn_' + p);
+                if (btn) {
+                    if (p === themeName) {
+                        btn.className = 'palette-dot w-4 h-4 rounded-full ring-2 ring-slate-900 dark:ring-white scale-125 shadow-md transition-all cursor-pointer';
+                    } else {
+                        btn.className = 'palette-dot w-4 h-4 rounded-full opacity-60 hover:opacity-100 hover:scale-110 shadow-xs transition-all cursor-pointer';
+                    }
+                }
+            });
+
+            updateChartPalettes(themeName);
+            showToast('Theme Palette: ' + colorPalettes[themeName].name, 'Color scheme updated successfully');
+        }
+
+        function updateChartPalettes(themeName) {
+            const pal = colorPalettes[themeName] || colorPalettes.cyan;
+
+            if (chartInstances.accuracy && chartInstances.accuracy.data) {
+                chartInstances.accuracy.data.datasets[0].backgroundColor[0] = pal.primary;
+                chartInstances.accuracy.update();
+            }
+            if (chartInstances.seniority && chartInstances.seniority.data) {
+                chartInstances.seniority.data.datasets[0].borderColor = pal.primary;
+                chartInstances.seniority.data.datasets[0].pointBackgroundColor = pal.primary;
+                chartInstances.seniority.data.datasets[0].backgroundColor = pal.lineBg;
+                chartInstances.seniority.update();
+            }
+            if (chartInstances.residuals && chartInstances.residuals.data) {
+                chartInstances.residuals.data.datasets[1].borderColor = pal.primary;
+                chartInstances.residuals.data.datasets[1].pointBackgroundColor = pal.primary;
+                chartInstances.residuals.update();
+            }
+            if (chartInstances.jobSalaries && chartInstances.jobSalaries.data) {
+                chartInstances.jobSalaries.data.datasets[0].backgroundColor[1] = pal.primary;
+                chartInstances.jobSalaries.data.datasets[0].backgroundColor[2] = pal.primary;
+                chartInstances.jobSalaries.update();
+            }
+        }
+
+        function showToast(title, subtitle) {
+            const toast = document.getElementById('themeToast');
+            if (!toast) return;
+            const spans = toast.querySelectorAll('span');
+            if (spans[0]) spans[0].innerText = title;
+            if (spans[1]) spans[1].innerText = subtitle || '';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
         function applySavedTheme() {
             const saved = localStorage.getItem('salaryscope_theme_mode');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const mode = saved ? saved : (prefersDark ? 'dark' : 'light');
             setTheme(mode);
+
+            const savedPalette = localStorage.getItem('salaryscope_palette') || 'cyan';
+            setColorTheme(savedPalette);
         }
 
         // Keyboard Shortcut: press 'T' to toggle theme smoothly
@@ -1640,9 +1855,7 @@
                 if (el) {
                     const isDark = document.documentElement.classList.contains('dark');
                     if (tier === expLevel) {
-                        el.className = isDark 
-                            ? 'py-1.5 rounded-lg bg-amber-950/40 border border-amber-500/60 text-amber-300 font-semibold transition-all shadow-xs'
-                            : 'py-1.5 rounded-lg bg-amber-100 border border-amber-500 text-amber-800 font-semibold transition-all shadow-xs';
+                        el.className = 'py-1.5 rounded-lg theme-bg-subtle theme-border theme-text border font-semibold transition-all shadow-xs';
                     } else {
                         el.className = isDark
                             ? 'py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 transition-all'
@@ -2135,6 +2348,8 @@ Validated against 5,000 ground truth data science salaries.`;
         window.addEventListener('DOMContentLoaded', () => {
             applySavedTheme();
             initCharts();
+            const savedPalette = localStorage.getItem('salaryscope_palette') || 'cyan';
+            updateChartPalettes(savedPalette);
             calculateSalary();
         });
     </script>
